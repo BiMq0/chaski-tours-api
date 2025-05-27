@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Turista extends Model
 {
+    public $timestamps = false;
+
     protected $table = "Turistas";
     
     protected $fillable = [
