@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Turista extends Model
 {
-    protected $primaryKey = "cod_visitante";
     public $timestamps = false;
 
     protected $table = "Turistas";

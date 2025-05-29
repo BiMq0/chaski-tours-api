@@ -37,9 +37,11 @@ Route::get('/visitantes/turistas/{mail}', [TuristaController::class,'selectMail'
 
 Route::post('/visitantes/turistas/crear', [TuristaController::class,'registrar']);
 
-Route::put('/visitantes/turistas/{mail}', [TuristaController::class,'actualizar']);
+Route::put('/visitantes/turistas/{cod}', [TuristaController::class,'actualizar']);
 
-Route::delete('/visitantes/turistas/{mail}', [TuristaController::class,'borrar']);
+Route::delete('/visitantes/turistas/{cod}', [TuristaController::class,'borrar']);
+
+// SITIOS
 
 
 
