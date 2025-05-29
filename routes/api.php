@@ -44,4 +44,4 @@ Route::delete('/visitantes/turistas/{mail}', [TuristaController::class,'borrar']
 
 
 // NACIONALIDAD
-Route::get('/nacionalidades/', [NacionalidadController::class,'selectAll']);
+Route::get('/nacionalidades', [NacionalidadController::class,'selectAll']);
