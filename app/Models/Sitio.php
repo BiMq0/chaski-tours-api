@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sitio extends Model
 {
-    protected $table = 'Sitio';
+
+    protected $primaryKey  = "id_sitio";
+protected $table = 'Sitio';
 protected $fillable = [
     'nombre', 
     'desc_conceptual_sitio', 
@@ -17,6 +19,5 @@ protected $fillable = [
     'recomendacion_climatica', 
     'horario_apertura', 
     'horario_cierre', 
-    'Activo'
 ];
 }

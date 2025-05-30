@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('/user', function (Request $request) {return $request->user();})->middleware('auth:sanctum');
 
+// VISITANTES
 
 // TURISTAS
 
@@ -41,9 +42,19 @@ Route::put('/visitantes/turistas/{cod}', [TuristaController::class,'actualizar']
 
 Route::delete('/visitantes/turistas/{cod}', [TuristaController::class,'borrar']);
 
+// INSTITUCIONES
+
 // SITIOS
 
+Route::get('/sitios', [SitioController::class,'selectAll']);
 
+Route::get('/sitios/{id}', [SitioController::class,'selectId']);
+
+Route::post('/sitios/crear', [SitioController::class,'crear']);
+
+Route::put('/sitios/{id}', [SitioController::class,'actualizar']);
+
+Route::delete('/sitios/{id}', [SitioController::class,'eliminar']);
 
 // NACIONALIDAD
 Route::get('/nacionalidades', [NacionalidadController::class,'selectAll']);

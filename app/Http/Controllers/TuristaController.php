@@ -42,16 +42,16 @@ class TuristaController extends Controller
     public function actualizar(Request $request, $cod){
         try{
             $turista = Turista::find($cod);
-            $turista->documento ? $turista->documento = $request->documento : null;
-            $turista->correo_electronico ? $turista->correo_electronico = $request->correo_electronico : null;
-            $turista->contrasenia ? $turista->contrasenia = $request->contrasenia : null;
-            $turista->nombre ? $turista->nombre = $request->nombre : null;
-            $turista->ap_pat ? $turista->ap_pat = $request->ap_pat : null;
-            $turista->ap_mat ? $turista->ap_mat = $request->ap_mat : null;
-            $turista->fecha_nac ? $turista->fecha_nac = $request->fecha_nac : null;
-            $turista->nacionalidad ? $turista->nacionalidad = $request->nacionalidad : null;
-            $turista->prefijo_telefonico ? $turista->prefijo_telefonico = $request->prefijo_telefonico : null;
-            $turista->telefono ? $turista->telefono = $request->telefono : null; 
+            $request->documento ? $turista->documento = $request->documento : null;
+            $request->correo_electronico ? $turista->correo_electronico = $request->correo_electronico : null;
+            $request->contrasenia ? $turista->contrasenia = $request->contrasenia : null;
+            $request->nombre ? $turista->nombre = $request->nombre : null;
+            $request->ap_pat ? $turista->ap_pat = $request->ap_pat : null;
+            $request->ap_mat ? $turista->ap_mat = $request->ap_mat : null;
+            $request->fecha_nac ? $turista->fecha_nac = $request->fecha_nac : null;
+            $request->nacionalidad ? $turista->nacionalidad = $request->nacionalidad : null;
+            $request->prefijo_telefonico ? $turista->prefijo_telefonico = $request->prefijo_telefonico : null;
+            $request->telefono ? $turista->telefono = $request->telefono : null; 
             $turista->save();
             return response()->json($turista, 200);
         }catch (\Exception $ex){
