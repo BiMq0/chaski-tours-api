@@ -19,5 +19,6 @@ protected $fillable = [
     'recomendacion_climatica', 
     'horario_apertura', 
     'horario_cierre', 
+    'Activo'
 ];
 }

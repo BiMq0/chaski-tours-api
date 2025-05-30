@@ -9,7 +9,6 @@ class Turista extends Model
     protected $table = "Turistas";
     
     protected $fillable = [
-        'cod_visitante',
         'correo_electronico',
         'contrasenia',
         'documento',

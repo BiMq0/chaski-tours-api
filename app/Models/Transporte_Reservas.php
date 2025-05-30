@@ -11,6 +11,5 @@ protected $fillable = [
     'id_vehiculo', 
     'id_reserva', 
     'fecha', 
-    'Activo'
 ];
 }

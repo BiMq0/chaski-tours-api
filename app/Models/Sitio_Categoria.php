@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Sitio_Categoria extends Model
 {
     protected $table = 'Sitio_Categoria';
-protected $fillable = ['id_categoria', 'id_sitio', 'Activo'];
+protected $fillable = ['nombre_categoria','id_sitio'];
 }

@@ -12,7 +12,6 @@ protected $fillable = [
     'id_alojamiento', 
     'tipo_habitacion', 
     'capacidad', 
-    'disponible', 
-    'Activo'
+    'disponible'
 ];
 }

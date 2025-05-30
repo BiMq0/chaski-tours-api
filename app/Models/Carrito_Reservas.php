@@ -11,7 +11,6 @@ protected $fillable = [
     'id_reserva', 
     'id_visitante', 
     'fecha_creacion', 
-    'expiracion', 
-    'Activo'
+    'expiracion'
 ];
 }

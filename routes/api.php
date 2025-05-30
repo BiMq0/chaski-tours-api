@@ -56,5 +56,10 @@ Route::put('/sitios/{id}', [SitioController::class,'actualizar']);
 
 Route::delete('/sitios/{id}', [SitioController::class,'eliminar']);
 
+// RESERVAS
+
+// reservas (respectiva relacion) (carrito_reservas - (reserva_transporte))
+
+
 // NACIONALIDAD
 Route::get('/nacionalidades', [NacionalidadController::class,'selectAll']);

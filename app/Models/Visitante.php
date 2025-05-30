@@ -8,9 +8,7 @@ class Visitante extends Model
 {
     protected $table = 'Visitantes';
     protected $fillable = [
-    'cod_visitante', 
-    'tipo_visitante', 
-    'fecha_registro', 
+    'tipo_visitante',  
     'Activo'
     ];
 }

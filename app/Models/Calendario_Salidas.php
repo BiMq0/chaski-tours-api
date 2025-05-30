@@ -10,7 +10,6 @@ class Calendario_Salidas extends Model
 protected $fillable = [
     'id_tour', 
     'fecha_salida', 
-    'fecha_regreso', 
-    'Activo'
+    'fecha_regreso',
 ];
 }

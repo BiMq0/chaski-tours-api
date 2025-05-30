@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Ruta extends Model
 {
     protected $table = 'Ruta';
-protected $fillable = ['id_tour', 'id_sitio', 'orden', 'Activo'];
+protected $fillable = ['id_tour', 'id_sitio', 'orden'];
 }
