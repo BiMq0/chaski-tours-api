@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reserva extends Model
 {
+    public $timestamps = false;
+
     protected $table = 'Reserva';
+
     protected $fillable = [
-        'id_visitante', 
-        'id_alojamiento', 
-        'id_transporte', 
+        'cod_visitante', 
+        'id_alojamiento',
         'id_salida', 
         'cantidad_personas', 
         'costo_total_reserva', 

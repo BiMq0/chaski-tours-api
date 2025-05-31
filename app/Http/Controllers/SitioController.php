@@ -7,7 +7,7 @@ use App\Models\Sitio;
 
 class SitioController extends Controller
 {
-        public function selectAll(){
+    public function selectAll(){
         $sitios = Sitio::all();
         return response()->json($sitios);
     }

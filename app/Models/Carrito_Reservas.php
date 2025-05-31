@@ -8,9 +8,7 @@ class Carrito_Reservas extends Model
 {
     protected $table = 'Carrito_Reservas';
 protected $fillable = [
-    'id_reserva', 
-    'id_visitante', 
-    'fecha_creacion', 
-    'expiracion'
+    'id_reserva',
+    'cod_visitante'
 ];
 }
