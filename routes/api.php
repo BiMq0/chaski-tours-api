@@ -31,6 +31,8 @@ Route::get('/user', function (Request $request) {return $request->user();})->mid
 
 // VISITANTES
 
+Route::get('/visitantes', [VisitanteController::class, 'selectAll']);
+
 // TURISTAS
 
 Route::get('/visitantes/turistas/', [TuristaController::class,'selectAll']);
@@ -74,7 +76,9 @@ Route::delete('/sitios/categorias{nombre_categoria}', [SitioController::class,'e
 Route::get('/sitios/imagenes', [ImagenController::class,'selectAll']);
 
 Route::get('/sitios/imagenes/{id_img}', [ImagenController::class,'selectId']);
+
 Route::get('/sitios/imagenes/{id_sitio}', [ImagenController::class,'selectIdSitio']);
+
 Route::get('/sitios/imagenes/{id_img}{id_sitio}', [ImagenController::class,'selectIdSitioImagen']);
 
 Route::post('/sitios/imagenes/añadir', [ImagenController::class,'añadir']);
