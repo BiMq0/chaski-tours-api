@@ -13,7 +13,7 @@ class SitioCategoriaController extends Controller
     }
     public function selectNombreCategoria($nombre_categoria){
         try{
-            $categoria = Sitio_Categoria::where('nombre_categoria',$nombre_categoria);
+            $categoria = Sitio_Categoria::where('nombre_categoria',$nombre_categoria)->get();
             return response()->json($categoria);
         }catch(\Exception $ex){
             return response()->json(['error' => 'Error al consultar la categoría: ' . $ex->getMessage()], 404);
@@ -44,9 +44,9 @@ class SitioCategoriaController extends Controller
         }
     }
 
-    public function eliminar($nombre_categoria){
+    public function eliminar($nombre_categoria,$id_sitio){
         try{
-            $sitio = Sitio_Categoria::where('nombre_categoria',$nombre_categoria);
+            $sitio = Sitio_Categoria::where('nombre_categoria',$nombre_categoria)->where('id_sitio', $id_sitio);
             $sitio->delete();
             return response()->json(['message'=>'Categoría eliminada', 'code'=>'200'], 200);
         }catch(\Exception $ex){
