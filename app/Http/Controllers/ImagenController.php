@@ -13,15 +13,15 @@ class ImagenController extends Controller
     }
     public function selectIdSitio($id_sitio){
         try{
-            $imagenes = Imagen::where('id_sitio', $id_sitio)->get();
+            $imagenes = Imagen::where( "id_sitio",$id_sitio)->get();
             return response()->json($imagenes);
         }catch(\Exception $ex){
-            return response()->json(['error' => 'Error al encontrar el sitio: ' . $ex->getMessage()], 401);
+            return response()->json(['error' => 'Error al consultar el sitio: ' . $ex->getMessage()], 401);
         }
     }    
     public function selectId($id_img){
         try{
-            $imagenes = Imagen::where('id_img', $id_img)->get();
+            $imagenes = Imagen::find($id_img);
             return response()->json($imagenes);
         }catch(\Exception $ex){
             return response()->json(['error' => 'Error al encontrar la imagen: ' . $ex->getMessage()], 401);
