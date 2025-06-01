@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Transporte extends Model
 {
     protected $table = 'Transporte';
-protected $fillable = [
+    protected $primaryKey = 'id_vehiculo';
+    protected $fillable = [
     'matricula', 
     'marca', 
     'modelo', 

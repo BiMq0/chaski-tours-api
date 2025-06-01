@@ -86,3 +86,39 @@ Route::delete('/carrito/{id}', [CarritoReservasController::class,'eliminar']);
 // NACIONALIDAD
 
 Route::get('/nacionalidades', [NacionalidadController::class,'selectAll']);
+
+//TOUR
+
+Route::get('/tour', [TourController::class,'selectAll']);
+
+Route::get('/tour/{id}', [TourController::class,'selectId']);
+
+Route::post('/tour/crear', [TourController::class,'crear']);
+
+Route::put('/tour/{id}', [TourController::class,'actualizar']);
+
+Route::delete('/tour/{id}', [TourController::class,'eliminar']);
+
+//RUTA
+
+Route::get('/ruta', [RutaController::class,'selectAll']);
+
+Route::get('/ruta/{id_tour}/{id_sitio}', [RutaController::class,'selectId']);
+
+Route::post('/ruta/crear', [RutaController::class,'crear']);
+
+Route::put('/ruta/{id_tour}/{id_sitio}', [RutaController::class,'actualizar']);
+
+Route::delete('/ruta/{id_tour}/{id_sitio}', [RutaController::class,'eliminar']);
+
+//TRANSPORTE
+
+Route::get('/transporte', [TransporteController::class,'selectAll']);
+
+Route::get('/transporte/{id}', [TransporteController::class,'selectId']);
+
+Route::post('/transporte/crear', [TransporteController::class,'crear']);
+
+Route::put('/transporte/{id}', [TransporteController::class,'actualizar']);
+
+Route::delete('/transporte/{id}', [TransporteController::class,'eliminar']);
