@@ -44,9 +44,9 @@ class SitioCategoriaController extends Controller
         }
     }
 
-    public function eliminar($nombre_categoria,$id_sitio){
+    public function eliminar($nombre_categoria){
         try{
-            $sitio = Sitio_Categoria::where('nombre_categoria',$nombre_categoria)->where('id_sitio', $id_sitio);
+            $sitio = Sitio_Categoria::where('nombre_categoria',$nombre_categoria);
             $sitio->delete();
             return response()->json(['message'=>'Categoría eliminada', 'code'=>'200'], 200);
         }catch(\Exception $ex){
