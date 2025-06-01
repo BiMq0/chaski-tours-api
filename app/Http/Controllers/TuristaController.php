@@ -12,7 +12,7 @@ class TuristaController extends Controller
     }
     public function selectMail($mail){
         try{
-            $turista = Turista::where('correo_electronico', $mail)->get();
+            $turista = Turista::where('correo_electronico', $mail)->orWhere('cod_visitante', $mail)->get();
             return response()->json($turista);
         }catch(\Exception $e){
             return response()->json(['error' => 'Error al registrar el turista: ' . $e->getMessage()], 500);
