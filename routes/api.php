@@ -1,11 +1,7 @@
 <?php
 use App\Http\Controllers\AlojamientoController;
 use App\Http\Controllers\CalendarioSalidasController;
-use App\Http\Controllers\CarritocarritosController;
 use App\Http\Controllers\CarritoReservasController;
-use App\Http\Controllers\CategoriaController;
-use App\Http\Controllers\DepartamentoController;
-use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\HabitacionController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\InstitucionController;
@@ -14,9 +10,6 @@ use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\RutaController;
 use App\Http\Controllers\SitioCategoriaController;
 use App\Http\Controllers\SitioController;
-use App\Http\Controllers\TemporadaController;
-use App\Http\Controllers\TipoHabitacionController;
-use App\Http\Controllers\TipoVisitanteController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\TransporteController;
 use App\Http\Controllers\TransporteReservasController;
@@ -61,15 +54,15 @@ Route::delete('/sitios/{id}', [SitioController::class,'eliminar']);
 
 // SITIO_CATEGORIA
 
-Route::get('/sitios/categorias', [SitioController::class,'selectAll']);
+Route::get('/sitios/categorias', [SitioCategoriaController::class,'selectAll']);
 
-Route::get('/sitios/categorias{nombre_categoria}', [SitioController::class,'selectNombreCategoria']);
+Route::get('/sitios/categorias{nombre_categoria}', [SitioCategoriaController::class,'selectNombreCategoria']);
 
-Route::post('/sitios/categorias/crear', [SitioController::class,'añadir']);
+Route::post('/sitios/categorias/crear', [SitioCategoriaController::class,'añadir']);
 
-Route::put('/sitios/categorias{nombre_categoria}', [SitioController::class,'actualizar']);
+Route::put('/sitios/categorias{nombre_categoria}', [SitioCategoriaController::class,'actualizar']);
 
-Route::delete('/sitios/categorias{nombre_categoria}', [SitioController::class,'eliminar']);
+Route::delete('/sitios/categorias{nombre_categoria}', [SitioCategoriaController::class,'eliminar']);
 
 // IMAGENES
 
