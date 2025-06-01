@@ -57,6 +57,42 @@ Route::put('/sitios/{id}', [SitioController::class,'actualizar']);
 
 Route::delete('/sitios/{id}', [SitioController::class,'eliminar']);
 
+// SITIO_CATEGORIA
+
+Route::get('/sitios/categorias', [SitioController::class,'selectAll']);
+
+Route::get('/sitios/categorias{nombre_categoria}', [SitioController::class,'selectNombreCategoria']);
+
+Route::post('/sitios/categorias/crear', [SitioController::class,'añadir']);
+
+Route::put('/sitios/categorias{nombre_categoria}', [SitioController::class,'actualizar']);
+
+Route::delete('/sitios/categorias{nombre_categoria}', [SitioController::class,'eliminar']);
+
+// IMAGENES
+
+Route::get('/sitios/imagenes', [ImagenController::class,'selectAll']);
+
+Route::get('/sitios/imagenes/{id_img}', [ImagenController::class,'selectId']);
+Route::get('/sitios/imagenes/{id_sitio}', [ImagenController::class,'selectIdSitio']);
+Route::get('/sitios/imagenes/{id_img}{id_sitio}', [ImagenController::class,'selectIdSitioImagen']);
+
+Route::post('/sitios/imagenes/añadir', [ImagenController::class,'añadir']);
+
+Route::delete('/sitios/imagenes/{id_img}', [ImagenController::class,'eliminar']);
+
+// UBICACIONES
+
+Route::get('/sitios/ubicaciones', [UbicacionController::class,'selectAll']);
+
+Route::get('/sitios/ubicaciones/{departamento}', [UbicacionController::class,'selectDepartamento']);
+
+Route::post('/sitios/ubicaciones/crear', [UbicacionController::class,'crear']);
+
+Route::put('/sitios/ubicaciones/{id_ubicacion}', [UbicacionController::class,'actualizar']);
+
+Route::delete('/sitios/ubicaciones/{id_ubicacion}', [UbicacionController::class,'eliminar']);
+
 // RESERVAS
 
 Route::get('/reservas', [ReservaController::class,'selectAll']);
