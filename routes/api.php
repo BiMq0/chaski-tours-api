@@ -22,10 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/user', function (Request $request) {return $request->user();})->middleware('auth:sanctum');
 
-// VISITANTES
-
-Route::get('/visitantes', [VisitanteController::class, 'selectAll']);
-
 // TURISTAS
 
 Route::get('/visitantes/turistas/', [TuristaController::class,'selectAll']);
@@ -155,3 +151,44 @@ Route::post('/transporte/crear', [TransporteController::class,'crear']);
 Route::put('/transporte/{id}', [TransporteController::class,'actualizar']);
 
 Route::delete('/transporte/{id}', [TransporteController::class,'eliminar']);
+
+//Alojamiento
+Route::get('/alojamientos', [AlojamientoController::class, 'selectAll']);
+Route::get('/alojamientos/{id}', [AlojamientoController::class, 'selectId']);
+Route::post('/alojamientos', [AlojamientoController::class, 'crear']);
+Route::put('/alojamientos/{id}', [AlojamientoController::class, 'actualizar']);
+Route::delete('/alojamientos/{id}', [AlojamientoController::class, 'eliminar']);
+
+//Habitacion
+
+Route::get('/habitaciones', [HabitacionController::class, 'selectAll']);
+Route::get('/habitaciones/{id}', [HabitacionController::class, 'SelectId']);
+Route::post('/habitaciones', [HabitacionController::class, 'crear']);
+Route::put('/habitaciones/{id}', [HabitacionController::class, 'actualizar']);
+Route::delete('/habitaciones/{id}', [HabitacionController::class, 'eliminar']);
+
+//visitantes
+
+Route::get('/visitantes', [VisitanteController::class, 'selectAll']);
+Route::get('/visitantes/{cod}', [VisitanteController::class, 'selectId']);
+Route::post('/visitantes', [VisitanteController::class, 'crear']);
+Route::put('/visitantes/{cod}', [VisitanteController::class, 'actualizar']);
+Route::delete('/visitantes/{cod}', [VisitanteController::class, 'eliminar']);
+
+//institucion
+
+
+Route::get('/institucion', [InstitucionController::class, 'selectAll']); 
+Route::get('/institucion/{cod_visitante}', [InstitucionController::class, 'selectId']); 
+Route::post('/institucion', [InstitucionController::class, 'crear']); 
+Route::put('/institucion/{cod_visitante}', [InstitucionController::class, 'actualizar']); 
+Route::delete('/institucion/{cod_visitante}', [InstitucionController::class, 'eliminar']); 
+
+// calendario salidas
+
+Route::get('/calendario', [CalendarioSalidasController::class, 'selectAll']); 
+Route::get('/calendario/{id_salida}', [CalendarioSalidasController::class, 'selectId']); 
+Route::post('/calendario', [CalendarioSalidasController::class, 'crear']); 
+Route::put('/calendario/{id_salida}', [CalendarioSalidasController::class, 'actualizar']); 
+Route::delete('/calendario/{id_salida}', [CalendarioSalidasController::class, 'eliminar']); 
+
