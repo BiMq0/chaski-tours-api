@@ -11,12 +11,28 @@ class ImagenController extends Controller
         $imagenes = Imagen::all();
         return response()->json($imagenes);
     }
-    public function selectID($id_img){
+    public function selectIdSitio($id_sitio){
+        try{
+            $imagenes = Imagen::where('id_sitio', $id_sitio)->get();
+            return response()->json($imagenes);
+        }catch(\Exception $ex){
+            return response()->json(['error' => 'Error al encontrar el sitio: ' . $ex->getMessage()], 401);
+        }
+    }    
+    public function selectId($id_img){
         try{
             $imagenes = Imagen::where('id_img', $id_img)->get();
             return response()->json($imagenes);
         }catch(\Exception $ex){
-            return response()->json(['error' => 'Error al encontrar imagen: ' . $ex->getMessage()], 401);
+            return response()->json(['error' => 'Error al encontrar la imagen: ' . $ex->getMessage()], 401);
+        }
+    } 
+    public function selectIdSitioImagen($id_img,$id_sitio){
+        try{
+            $imagenes = Imagen::where('id_img', $id_img)->where('id_sitio', $id_sitio)->first();
+            return response()->json($imagenes);
+        }catch(\Exception $ex){
+            return response()->json(['error' => 'Error al encontrar la imagen: ' . $ex->getMessage()], 401);
         }
     }
     public function añadir(Request $request){
