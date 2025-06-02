@@ -28,6 +28,8 @@ Route::get('/visitantes/turistas/', [TuristaController::class,'selectAll']);
 
 Route::get('/visitantes/turistas/{mail}', [TuristaController::class,'selectMail']);
 
+Route::get('/visitantes/turistas/{cod}', [TuristaController::class,'selectId']);
+
 Route::post('/visitantes/turistas/crear', [TuristaController::class,'registrar']);
 
 Route::put('/visitantes/turistas/{cod}', [TuristaController::class,'actualizar']);
