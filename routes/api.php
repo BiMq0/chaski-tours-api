@@ -22,13 +22,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/user', function (Request $request) {return $request->user();})->middleware('auth:sanctum');
 
+// VISITANTES
+
+Route::get('/visitantes', [VisitanteController::class, 'selectAll']);
+
+Route::get('/visitante/{cod}', [VisitanteController::class, 'selectId']);
+
+Route::post('/visitante', [VisitanteController::class, 'crear']);
+
+Route::put('/visitante/{cod}', [VisitanteController::class, 'actualizar']);
+
+Route::delete('/visitante/{cod}', [VisitanteController::class, 'eliminar']);
+
 // TURISTAS
 
 Route::get('/visitantes/turistas/', [TuristaController::class,'selectAll']);
 
 Route::get('/visitantes/turistas/{mail}', [TuristaController::class,'selectMail']);
-
-Route::get('/visitantes/turistas/{cod}', [TuristaController::class,'selectId']);
 
 Route::post('/visitantes/turistas/crear', [TuristaController::class,'registrar']);
 
@@ -37,6 +47,16 @@ Route::put('/visitantes/turistas/{cod}', [TuristaController::class,'actualizar']
 Route::delete('/visitantes/turistas/{cod}', [TuristaController::class,'borrar']);
 
 // INSTITUCIONES
+
+Route::get('/visitantes/instituciones', [InstitucionController::class, 'selectAll']); 
+
+Route::get('/visitantes/instituciones/{cod_visitante}', [InstitucionController::class, 'selectId']); 
+
+Route::post('/visitantes/instituciones', [InstitucionController::class, 'crear']); 
+
+Route::put('/visitantes/instituciones/{cod_visitante}', [InstitucionController::class, 'actualizar']); 
+
+Route::delete('/visitantes/instituciones/{cod_visitante}', [InstitucionController::class, 'eliminar']); 
 
 // SITIOS
 
@@ -155,42 +175,38 @@ Route::put('/transporte/{id}', [TransporteController::class,'actualizar']);
 Route::delete('/transporte/{id}', [TransporteController::class,'eliminar']);
 
 //Alojamiento
+
 Route::get('/alojamientos', [AlojamientoController::class, 'selectAll']);
+
 Route::get('/alojamientos/{id}', [AlojamientoController::class, 'selectId']);
+
 Route::post('/alojamientos', [AlojamientoController::class, 'crear']);
+
 Route::put('/alojamientos/{id}', [AlojamientoController::class, 'actualizar']);
+
 Route::delete('/alojamientos/{id}', [AlojamientoController::class, 'eliminar']);
 
 //Habitacion
 
 Route::get('/habitaciones', [HabitacionController::class, 'selectAll']);
+
 Route::get('/habitaciones/{id}', [HabitacionController::class, 'SelectId']);
+
 Route::post('/habitaciones', [HabitacionController::class, 'crear']);
+
 Route::put('/habitaciones/{id}', [HabitacionController::class, 'actualizar']);
+
 Route::delete('/habitaciones/{id}', [HabitacionController::class, 'eliminar']);
-
-//visitantes
-
-Route::get('/visitantes', [VisitanteController::class, 'selectAll']);
-Route::get('/visitantes/{cod}', [VisitanteController::class, 'selectId']);
-Route::post('/visitantes', [VisitanteController::class, 'crear']);
-Route::put('/visitantes/{cod}', [VisitanteController::class, 'actualizar']);
-Route::delete('/visitantes/{cod}', [VisitanteController::class, 'eliminar']);
-
-//institucion
-
-
-Route::get('/institucion', [InstitucionController::class, 'selectAll']); 
-Route::get('/institucion/{cod_visitante}', [InstitucionController::class, 'selectId']); 
-Route::post('/institucion', [InstitucionController::class, 'crear']); 
-Route::put('/institucion/{cod_visitante}', [InstitucionController::class, 'actualizar']); 
-Route::delete('/institucion/{cod_visitante}', [InstitucionController::class, 'eliminar']); 
 
 // calendario salidas
 
 Route::get('/calendario', [CalendarioSalidasController::class, 'selectAll']); 
+
 Route::get('/calendario/{id_salida}', [CalendarioSalidasController::class, 'selectId']); 
+
 Route::post('/calendario', [CalendarioSalidasController::class, 'crear']); 
+
 Route::put('/calendario/{id_salida}', [CalendarioSalidasController::class, 'actualizar']); 
+
 Route::delete('/calendario/{id_salida}', [CalendarioSalidasController::class, 'eliminar']); 
 
