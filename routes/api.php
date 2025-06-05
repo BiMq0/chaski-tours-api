@@ -1,7 +1,6 @@
 <?php
 use App\Http\Controllers\AlojamientoController;
 use App\Http\Controllers\CalendarioSalidasController;
-use App\Http\Controllers\CarritoReservasController;
 use App\Http\Controllers\HabitacionController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\InstitucionController;
@@ -120,17 +119,6 @@ Route::put('/reservas/{id}', [ReservaController::class,'actualizar']);
 
 Route::delete('/reservas/{id}', [ReservaController::class,'eliminar']);
 
-// CARRITO RESERVAS
-
-Route::get('/carrito', [CarritoReservasController::class,'selectAll']);
-
-Route::get('/carrito/{id}', [CarritoReservasController::class,'selectId']);
-
-Route::post('/carrito/crear', [CarritoReservasController::class,'crear']);
-
-Route::put('/carrito/{id}', [CarritoReservasController::class,'actualizar']);
-
-Route::delete('/carrito/{id}', [CarritoReservasController::class,'eliminar']);
 
 // RESERVAS_TRANSPORTES
 
