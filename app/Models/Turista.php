@@ -17,7 +17,6 @@ class Turista extends Model
         'ap_mat',
         'fecha_nac',
         'nacionalidad',
-        'prefijo_telefonico',
         'telefono'
     ];
 }

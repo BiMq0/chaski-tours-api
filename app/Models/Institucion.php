@@ -20,7 +20,6 @@ class Institucion extends Model
         'correo_electronico', 
         'contrasenia', 
         'nacionalidad', 
-        'prefijo_telefonico', 
         'telefono', 
         'nombre_represent', 
         'ap_pat_represent', 
