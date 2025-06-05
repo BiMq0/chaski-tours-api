@@ -35,12 +35,10 @@ class InstitucionController extends Controller
     public function crear(Request $request)
     {
         $validacion = Validator::make($request->all(), [
-            'cod_visitante' => 'required|string|max:10|unique:Instituciones,cod_visitante',
             'nombre' => 'required|string|max:100',
             'correo_electronico' => 'required|email|max:50|unique:Instituciones,correo_electronico',
             'contrasenia' => 'required|string|min:6',
             'nacionalidad' => 'required|string|max:20',
-            'prefijo_telefonico' => 'required|string|max:8',
             'telefono' => 'nullable|string|max:20',
             'nombre_represent' => 'required|string|max:20',
             'ap_pat_represent' => 'required|string|max:20',
@@ -54,12 +52,10 @@ class InstitucionController extends Controller
 
         try {
             $institucion = Institucion::create([
-                'cod_visitante' => $request->cod_visitante,
                 'nombre' => $request->nombre,
                 'correo_electronico' => $request->correo_electronico,
                 'contrasenia' => bcrypt($request->contrasenia),
                 'nacionalidad' => $request->nacionalidad,
-                'prefijo_telefonico' => $request->prefijo_telefonico,
                 'telefono' => $request->telefono,
                 'nombre_represent' => $request->nombre_represent,
                 'ap_pat_represent' => $request->ap_pat_represent,
@@ -68,7 +64,7 @@ class InstitucionController extends Controller
             ]);
             return response()->json($institucion, 201);
         } catch (\Throwable $e) {
-            return response()->json(['error' => 'Error interno del servidor'], 500);
+            return response()->json(['error' => 'Error interno del servidor'.$e->getMessage()], 500);
         }
     }
 
@@ -84,7 +80,6 @@ class InstitucionController extends Controller
             'correo_electronico' => "sometimes|required|email|unique:Instituciones,correo_electronico,$cod_visitante,cod_visitante",
             'contrasenia' => 'sometimes|required|string',
             'nacionalidad' => 'sometimes|required|string',
-            'prefijo_telefonico' => 'sometimes|required|string',
             'telefono' => 'nullable|string',
             'nombre_represent' => 'sometimes|required|string',
             'ap_pat_represent' => 'sometimes|required|string',

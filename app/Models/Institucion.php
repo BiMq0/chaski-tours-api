@@ -15,7 +15,6 @@ class Institucion extends Model
     public $timestamps = true;
 
     protected $fillable = [ 
-        'cod_visitante',
         'nombre', 
         'correo_electronico', 
         'contrasenia', 

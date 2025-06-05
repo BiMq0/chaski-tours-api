@@ -29,7 +29,6 @@ class TuristaController extends Controller
             'ap_mat' => $request->ap_mat,
             'fecha_nac' => $request->fecha_nac,
             'nacionalidad' => $request->nacionalidad,
-            'prefijo_telefonico' => $request->prefijo_telefonico,
             'telefono' => $request->telefono
         ]);
 
@@ -50,7 +49,6 @@ class TuristaController extends Controller
             $request->ap_mat ? $turista->ap_mat = $request->ap_mat : null;
             $request->fecha_nac ? $turista->fecha_nac = $request->fecha_nac : null;
             $request->nacionalidad ? $turista->nacionalidad = $request->nacionalidad : null;
-            $request->prefijo_telefonico ? $turista->prefijo_telefonico = $request->prefijo_telefonico : null;
             $request->telefono ? $turista->telefono = $request->telefono : null; 
             $turista->save();
             return response()->json($turista, 200);
