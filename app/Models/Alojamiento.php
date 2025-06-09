@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Alojamiento extends Model
 {
-    protected $table = 'alojamientos'; // corregido
+    protected $table = 'alojamientos'; 
     protected $primaryKey = 'id_alojamiento';
-    public $timestamps = true; // Laravel manejará created_at y updated_at
+    public $timestamps = true; 
 
     protected $fillable = [
         'nombre_aloj',
