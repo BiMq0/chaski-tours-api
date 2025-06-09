@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Alojamiento extends Model
 {
-    protected $table = 'Alojamiento';
+    protected $table = 'alojamientos'; 
     protected $primaryKey = 'id_alojamiento';
+    public $timestamps = true; 
 
     protected $fillable = [
         'nombre_aloj',
@@ -15,4 +16,10 @@ class Alojamiento extends Model
         'nro_habitaciones',
         'Activo',
     ];
+
+    // Relación con reservas
+    public function reservas()
+    {
+        return $this->hasMany(Reserva::class, 'id_alojamiento', 'id_alojamiento');
+    }
 }
