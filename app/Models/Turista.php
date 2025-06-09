@@ -19,4 +19,20 @@ class Turista extends Model
         'nacionalidad',
         'telefono'
     ];
+
+    public function visitante()
+    {
+        return $this->belongsTo(Visitante::class, 'cod_visitante', 'cod_visitante');
+    }
+
+    public function nacionalidadRel()
+    {
+        return $this->belongsTo(Nacionalidad::class, 'nacionalidad', 'nacionalidad');
+    }
+
+    public function reservas()
+    {
+        return $this->hasMany(Reserva::class, 'cod_visitante', 'cod_visitante');
+    }
+
 }
