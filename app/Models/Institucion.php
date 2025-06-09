@@ -10,10 +10,8 @@ class Institucion extends Model
 
     protected $primaryKey = 'cod_visitante';
     public $incrementing = false; 
-    protected $keyType = 'string'; 
-    
+    protected $keyType = 'string';  
     public $timestamps = true;
-
     protected $fillable = [ 
         'nombre', 
         'correo_electronico', 
