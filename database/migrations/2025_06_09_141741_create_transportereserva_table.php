@@ -13,17 +13,24 @@ return new class extends Migration
     {
         Schema::create('transporte_reservas', function (Blueprint $table) {
             $table->id('id_asignacion');
-            $table->foreignId('id_vehiculo')->constrained('transporte')->onDelete('cascade');
-            $table->foreignId('id_reserva')->constrained('reserva')->onDelete('cascade');
+            $table->unsignedBigInteger('id_vehiculo');
+            $table->foreign('id_vehiculo')
+                  ->references('id_vehiculo')
+                  ->on('transporte')
+                  ->onDelete('cascade');
+                  
+            $table->unsignedBigInteger('id_reserva');
+            $table->foreign('id_reserva')
+                  ->references('id_reserva') 
+                  ->on('reserva')
+                  ->onDelete('cascade');
+                  
             $table->date('fecha');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('transporte_reservas');
     }

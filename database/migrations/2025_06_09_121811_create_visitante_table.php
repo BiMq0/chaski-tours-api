@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('visitante', function (Blueprint $table) {
+        Schema::create('Visitantes', function (Blueprint $table) {
             $table->string('cod_visitante', 10)->primary()->default('uwu');
             $table->enum('tipo_visitante', ['Turista', 'Institucion']);
             $table->boolean('activo')->default(true);
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('visitante');
+        Schema::dropIfExists('Visitantes');
     }
 };
