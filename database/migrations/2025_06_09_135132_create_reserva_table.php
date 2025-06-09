@@ -12,7 +12,6 @@ return new class extends Migration
         Schema::create('reserva', function (Blueprint $table) {
             $table->id('id_reserva'); 
             $table->string('cod_visitante', 10);
-            $table->unsignedBigInteger('id_alojamiento')->nullable();
             $table->unsignedBigInteger('id_salida');
             $table->integer('cantidad_personas');
             $table->double('costo_total_reserva', 10, 2);
@@ -24,11 +23,6 @@ return new class extends Migration
                   ->references('cod_visitante')
                   ->on('visitantes')
                   ->onDelete('cascade');
-
-            $table->foreign('id_alojamiento')
-                  ->references('id_alojamiento')
-                  ->on('alojamiento')
-                  ->onDelete('set null');
 
             $table->foreign('id_salida')
                   ->references('id_salida')

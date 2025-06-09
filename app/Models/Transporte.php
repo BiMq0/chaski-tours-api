@@ -16,5 +16,6 @@ class Transporte extends Model
     'año', 
     'disponible', 
     'Activo'
-];
+    ];
+
 }

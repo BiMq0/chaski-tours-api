@@ -23,6 +23,6 @@ public function up()
      */
     public function down(): void
     {
-        Schema::dropIfExists('nacionalidades');
+        Schema::dropIfExists('Nacionalidades');
     }
 };
