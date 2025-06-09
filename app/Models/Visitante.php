@@ -17,4 +17,8 @@ class Visitante extends Model
         'tipo_visitante',
         'Activo'
     ];
+    public function reservas()
+{
+    return $this->hasMany(Reserva::class, 'cod_visitante', 'cod_visitante');
+}
 }
