@@ -88,6 +88,7 @@ class AlojamientoController extends Controller{
     }
 
     // Eliminar un alojamiento
+    //modificar a put , borrado logico
     public function eliminar($id)
     {
         try {

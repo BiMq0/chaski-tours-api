@@ -9,6 +9,10 @@ use App\Http\Controllers\NacionalidadController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\RutaController;
 
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\SitioCategoriaController;
+>>>>>>> 15fbb796121a81cc57f8dacf9047564a58889c58
 use App\Http\Controllers\SitioController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\TransporteController;

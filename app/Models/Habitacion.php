@@ -8,18 +8,20 @@ use App\Models\Alojamiento;
 class Habitacion extends Model
 {
     protected $table = 'Habitacion';
-    protected $primaryKey = 'nro_habitacion'; 
-    public $timestamps = true;
+    public $incrementing = false;
+
+    protected $primaryKey = ['nro_habitacion', 'id_alojamiento']; 
 
     protected $fillable = [
-        'nro_habitacion', 
-        'id_alojamiento', 
-        'tipo_habitacion', 
-        'capacidad', 
+        'nro_habitacion',
+        'id_alojamiento',
+        'tipo_habitacion',
+        'capacidad',
         'disponible'
     ];
 
-    // Relación con el modelo Alojamiento
+    public $timestamps = false; 
+
     public function alojamiento()
     {
         return $this->belongsTo(Alojamiento::class, 'id_alojamiento', 'id_alojamiento');

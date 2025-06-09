@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Calendario_Salidas extends Model
 {
     protected $table = 'Calendario_Salidas';
-
+    protected $primaryKey = 'id_salida';
     protected $fillable = [
         'id_tour',
         'fecha_salida',
