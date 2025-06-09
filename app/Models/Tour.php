@@ -19,4 +19,16 @@ class Tour extends Model
     'id_alojamiento', 
     'Activo'
 ];
+    public function alojamiento()
+    {
+        return $this->belongsTo(Alojamiento::class, 'id_alojamiento', 'id_alojamiento');
+    }
+    public function sitioFin()
+    {
+        return $this->belongsTo(Sitio::class, 'id_sitio_fin', 'id_sitio');
+    }
+    public function sitioInicio()
+    {
+        return $this->belongsTo(Sitio::class, 'id_sitio_inicio', 'id_sitio');
+    }
 }
