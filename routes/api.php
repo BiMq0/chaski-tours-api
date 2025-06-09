@@ -3,14 +3,17 @@ use App\Http\Controllers\AlojamientoController;
 use App\Http\Controllers\CalendarioSalidasController;
 use App\Http\Controllers\HabitacionController;
 use App\Http\Controllers\ImagenController;
+
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\NacionalidadController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\RutaController;
+
 use App\Http\Controllers\SitioCategoriaController;
 use App\Http\Controllers\SitioController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\TransporteController;
+
 use App\Http\Controllers\TransporteReservasController;
 use App\Http\Controllers\TuristaController;
 use App\Http\Controllers\UbicacionController;
