@@ -8,8 +8,8 @@ class Sitio extends Model
 {
 
     protected $primaryKey  = "id_sitio";
-protected $table = 'Sitio';
-protected $fillable = [
+    protected $table = 'Sitio';
+    protected $fillable = [
     'nombre', 
     'desc_conceptual_sitio', 
     'desc_historica_sitio', 
@@ -20,5 +20,10 @@ protected $fillable = [
     'horario_apertura', 
     'horario_cierre', 
     'Activo'
-];
+    ];
+    
+    public function ubicacion()
+    {
+        return $this->belongsTo(Ubicacion::class, 'id_ubicacion', 'id_ubicacion');
+    }
 }
