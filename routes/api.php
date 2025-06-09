@@ -3,14 +3,16 @@ use App\Http\Controllers\AlojamientoController;
 use App\Http\Controllers\CalendarioSalidasController;
 use App\Http\Controllers\HabitacionController;
 use App\Http\Controllers\ImagenController;
+
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\NacionalidadController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\RutaController;
-use App\Http\Controllers\SitioCategoriaController;
+
 use App\Http\Controllers\SitioController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\TransporteController;
+
 use App\Http\Controllers\TransporteReservasController;
 use App\Http\Controllers\TuristaController;
 use App\Http\Controllers\UbicacionController;
@@ -68,18 +70,6 @@ Route::post('/sitios/crear', [SitioController::class,'crear']);
 Route::put('/sitios/{id}', [SitioController::class,'actualizar']);
 
 Route::delete('/sitios/{id}', [SitioController::class,'eliminar']);
-
-// SITIO_CATEGORIA
-
-Route::get('/sitios/categorias', [SitioCategoriaController::class,'selectAll']);
-
-Route::get('/sitios/categorias{nombre_categoria}', [SitioCategoriaController::class,'selectNombreCategoria']);
-
-Route::post('/sitios/categorias/crear', [SitioCategoriaController::class,'añadir']);
-
-Route::put('/sitios/categorias{nombre_categoria}', [SitioCategoriaController::class,'actualizar']);
-
-Route::delete('/sitios/categorias{nombre_categoria}', [SitioCategoriaController::class,'eliminar']);
 
 // IMAGENES
 
