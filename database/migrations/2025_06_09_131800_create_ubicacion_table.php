@@ -24,9 +24,9 @@ return new class extends Migration
                 'Beni', 
                 'Pando'
             ]);
-            $table->string('municipio', 30);
-            $table->string('zona', 30);
-            $table->string('calle', 30);
+            $table->string('municipio', 100);
+            $table->string('zona', 100);
+            $table->string('calle', 100);
             $table->decimal('latitud', 10, 6);
             $table->decimal('longitud', 10, 6);
             $table->timestamps();

@@ -14,6 +14,7 @@ public function up()
     Schema::create('Nacionalidades', function (Blueprint $table) {
         $table->string('nacionalidad', 20)->primary();
         $table->string('prefijo_telefonico', 8);
+        
     });
 }
 

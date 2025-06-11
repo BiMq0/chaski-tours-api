@@ -10,6 +10,7 @@ class Nacionalidad extends Model
     protected $table = 'Nacionalidades';
     protected $primaryKey = 'nacionalidad';
     public $incrementing = false;
+    public $timestamps = false;
     protected $keyType = 'string';
     protected $fillable = [
         'nacionalidad',

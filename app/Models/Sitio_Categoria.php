@@ -9,6 +9,7 @@ class Sitio_Categoria extends Model
     protected $table = 'Sitio_Categoria';
     protected $primaryKey = 'nombre_categoria';
     public $incrementing = false;
+    public $timestamps = false;
     protected $keyType = 'string';
     protected $fillable = [
         'nombre_categoria'
