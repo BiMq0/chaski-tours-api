@@ -16,10 +16,4 @@ class Alojamiento extends Model
         'nro_habitaciones',
         'Activo',
     ];
-
-    // Relación con reservas
-    public function reservas()
-    {
-        return $this->hasMany(Reserva::class, 'id_alojamiento', 'id_alojamiento');
-    }
 }

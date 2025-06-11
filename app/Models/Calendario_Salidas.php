@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Calendario_Salida extends Model
+class Calendario_Salidas extends Model
 {
     protected $table = 'calendario_salidas';
     protected $primaryKey = 'id_salida';

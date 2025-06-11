@@ -35,6 +35,6 @@ class Reserva extends Model
 
     public function salida()
     {
-        return $this->belongsTo(Calendario_Salida::class, 'id_salida', 'id_salida');
+        return $this->belongsTo(Calendario_Salidas::class, 'id_salida', 'id_salida');
     }
 }

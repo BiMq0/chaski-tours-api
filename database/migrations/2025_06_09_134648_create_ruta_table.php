@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->foreign('id_tour')
                   ->references('id_tour')
-                  ->on('tour')
+                  ->on('tours')
                   ->onDelete('cascade');
 
             $table->foreign('id_sitio')
