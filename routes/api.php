@@ -75,17 +75,17 @@ Route::delete('/sitios/{id}', [SitioController::class,'eliminar']);
 
 // IMAGENES
 
-Route::get('/sitios/imagenes', [ImagenController::class,'selectAll']);
+Route::get('/imagenes', [ImagenController::class,'selectAll']);
 
-Route::get('/sitios/imagenes/{id_img}', [ImagenController::class,'selectId']);
+Route::get('/imagenes_img/{id_img}', [ImagenController::class,'selectId']);
 
-Route::get('/sitios/imagenes/{id_sitio}', [ImagenController::class,'selectIdSitio']);
+Route::get('/imagenes_sitio/{id_sitio}', [ImagenController::class,'selectIdSitio']);
 
-Route::get('/sitios/imagenes/{id_img}{id_sitio}', [ImagenController::class,'selectIdSitioImagen']);
+Route::get('/imagenes/{id_img}/{id_sitio}', [ImagenController::class,'selectIdSitioImagen']);
 
-Route::post('/sitios/imagenes/añadir', [ImagenController::class,'añadir']);
+Route::post('/imagenes/crear', [ImagenController::class,'crear']);
 
-Route::delete('/sitios/imagenes/{id_img}', [ImagenController::class,'eliminar']);
+Route::delete('/imagenes/borrar/{id_img}', [ImagenController::class,'borrar']);
 
 // UBICACIONES
 
