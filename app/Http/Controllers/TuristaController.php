@@ -21,6 +21,7 @@ class TuristaController extends Controller
     public function registrar(Request $request){
         try{
             $turista = Turista::create([
+            'cod_visitante' => $request->cod_visitante,
             'correo_electronico' => $request->correo_electronico,
             'contrasenia' => $request->contrasenia,
             'documento' => $request->documento,
