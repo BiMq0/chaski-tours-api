@@ -21,9 +21,9 @@ class Habitacion extends Model
     ];
 
     public $timestamps = false; 
-
+    // Relación N:1 con Alojamiento
     public function alojamiento()
     {
-        return $this->belongsTo(Alojamiento::class, 'id_alojamiento', 'id_alojamiento');
+        return $this->belongsTo(Alojamiento::class, 'id_alojamiento');
     }
 }

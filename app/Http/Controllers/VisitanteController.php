@@ -12,9 +12,9 @@ class VisitanteController extends Controller
     {
         try {
             $visitantes = Visitante::all();
-            return response()->json($visitantes);
-        } catch (\Throwable $e) {
-            return response()->json(['error' => 'Error del servidor'], 500);
+            return response()->json(['data' => $visitantes], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
         
     }
@@ -23,40 +23,32 @@ class VisitanteController extends Controller
     public function selectId($cod)
     {
         try {
-            $visitante = Visitante::find($cod);
-
-            if (!$visitante) {
-                return response()->json(['mensaje' => 'Visitante no encontrado'], 404);
-            }
-
-            return response()->json($visitante);
-        } catch (\Throwable $e) {
-            return response()->json(['error' => 'Error del servidor'], 500);
+            $visitante = Visitante::findOrFail($cod);
+            return response()->json(['data' => $visitante], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Visitante no encontrado'], 404);
         }
     }
 
     // Crear nuevo visitante
     public function crear(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'tipo_visitante' => 
+            'required|in:Turista,
+            Institucion',
+            'Activo' => 'boolean'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+
         try {
-            $validador = Validator::make($request->all(), [
-                'cod_visitante' => 'required|string|max:10|unique:Visitantes,cod_visitante',
-                'tipo_visitante' => 'required|in:Turista,Institucion',
-                'Activo' => 'boolean'
-            ]);
-
-            if ($validador->fails()) {
-                return response()->json(['errores' => $validador->errors()], 422);
-            }
-
             $visitante = Visitante::create($request->all());
-
-            return response()->json([
-                'mensaje' => 'Visitante creado correctamente',
-                'visitante' => $visitante
-            ], 201);
-        } catch (\Throwable $e) {
-            return response()->json(['error' => 'Error del servidor'], 500);
+            return response()->json(['data' => $visitante], 201);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 

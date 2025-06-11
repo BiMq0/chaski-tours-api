@@ -18,6 +18,8 @@ use App\Http\Controllers\TuristaController;
 use App\Http\Controllers\UbicacionController;
 use App\Http\Controllers\VisitanteController;
 
+use App\Http\Controllers\SitioCategoriaController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -112,6 +114,7 @@ Route::delete('/reservas/{id}', [ReservaController::class,'eliminar']);
 
 // RESERVAS_TRANSPORTES
 
+
 // NACIONALIDAD
 
 Route::get('/nacionalidades', [NacionalidadController::class,'selectAll']);
@@ -188,3 +191,13 @@ Route::put('/calendario/{id_salida}', [CalendarioSalidasController::class, 'actu
 
 Route::delete('/calendario/{id_salida}', [CalendarioSalidasController::class, 'eliminar']); 
 
+// sitio categoria
+Route::get('/sitio-categorias', [SitioCategoriaController::class, 'selectAll']); 
+
+Route::get('/sitio-categorias/{nombre_categoria}', [SitioCategoriaController::class, 'selectNombreCategoria']); 
+
+Route::post('/sitio-categorias', [SitioCategoriaController::class, 'añadir']); 
+
+Route::put('/sitio-categorias/{nombre_categoria}', [SitioCategoriaController::class, 'actualizar']); 
+
+Route::delete('/sitio-categorias/{nombre_categoria}', [SitioCategoriaController::class, 'eliminar']);

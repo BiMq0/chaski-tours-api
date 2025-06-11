@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Visitante extends Model
 {
@@ -17,8 +19,21 @@ class Visitante extends Model
         'tipo_visitante',
         'Activo'
     ];
+    // Relación 1:1 con Turista
+    public function turista()
+    {
+        return $this->hasOne(Turista::class, 'cod_visitante', 'cod_visitante');
+    }
+
+    // Relación 1:1 con Institucion
+    public function institucion()
+    {
+        return $this->hasOne(Institucion::class, 'cod_visitante', 'cod_visitante');
+    }
+
+    // Relación 1:N con Reserva
     public function reservas()
-{
-    return $this->hasMany(Reserva::class, 'cod_visitante', 'cod_visitante');
-}
+    {
+        return $this->hasMany(Reserva::class, 'cod_visitante', 'cod_visitante');
+    }
 }

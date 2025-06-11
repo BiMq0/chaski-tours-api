@@ -17,5 +17,10 @@ class Transporte extends Model
     'disponible', 
     'Activo'
     ];
+    // Relación 1:N con TransporteReserva
+    public function reservasTransporte()
+    {
+        return $this->hasMany(Transporte_Reservas::class, 'id_vehiculo');
+    }
 
 }

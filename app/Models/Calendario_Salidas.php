@@ -16,13 +16,14 @@ class Calendario_Salidas extends Model
         'fecha_regreso',
     ];
 
+    // Relación N:1 con Tour
     public function tour()
     {
-        return $this->belongsTo(Tour::class, 'id_tour', 'id_tour');
+        return $this->belongsTo(Tour::class, 'id_tour');
     }
-
+    // Relación 1:N con Reserva
     public function reservas()
     {
-        return $this->hasMany(Reserva::class, 'id_salida', 'id_salida');
+        return $this->hasMany(Reserva::class, 'id_salida');
     }
 }

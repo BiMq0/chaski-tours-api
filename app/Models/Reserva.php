@@ -22,19 +22,27 @@ class Reserva extends Model
         'fecha_reservacion'
     ];
 
-    // Relaciones
+   // Relación N:1 con Visitante
     public function visitante()
     {
-        return $this->belongsTo(Visitante::class, 'cod_visitante', 'cod_visitante');
+        return $this->belongsTo(Visitante::class, 'cod_visitante');
     }
 
+    // Relación N:1 con Alojamiento
     public function alojamiento()
     {
-        return $this->belongsTo(Alojamiento::class, 'id_alojamiento', 'id_alojamiento');
+        return $this->belongsTo(Alojamiento::class, 'id_alojamiento');
     }
 
+    // Relación N:1 con CalendarioSalida
     public function salida()
     {
-        return $this->belongsTo(Calendario_Salidas::class, 'id_salida', 'id_salida');
+        return $this->belongsTo(Calendario_Salidas::class, 'id_salida');
     }
+    // Relación 1:N con TransporteReserva
+    public function transportes()
+    {
+        return $this->hasMany(Transporte_Reservas::class, 'id_reserva');
+    }
+
 }
