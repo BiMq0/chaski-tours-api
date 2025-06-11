@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Imagen extends Model
 {
+    public $timestamps = false;
     protected $table = 'Imagen';
     protected $primaryKey = 'id_img';
-    protected $fillable = ['
-    id_sitio', 
-    'url_img'
+    protected $fillable = [
+        'id_sitio', 
+        'url_img'
     ];
 
     // Relación N:1 con Sitio

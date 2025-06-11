@@ -12,16 +12,29 @@ class ImagenController extends Controller
         return response()->json($imagenes);
     }
     public function selectIdSitio($id_sitio){
-        try{
-            $imagenes = Imagen::where( "id_sitio",$id_sitio)->get();
+        try {
+            $imagenes = Imagen::where('id_sitio', $id_sitio)->get();
+            if ($imagenes->isEmpty()) {
+                return response()->json([
+                    'message' => 'No hay imágenes registradas para este sitio.',
+                    'data' => [],
+                ], 404);
+            }
             return response()->json($imagenes);
-        }catch(\Exception $ex){
-            return response()->json(['error' => 'Error al consultar el sitio: ' . $ex->getMessage()], 401);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'error' => 'Error al consultar el sitio: ' . $ex->getMessage()
+            ], 500);
         }
-    }    
+    }
     public function selectId($id_img){
         try{
             $imagenes = Imagen::find($id_img);
+            if (!$imagenes) {
+                return response()->json([
+                    'message' => 'La imagen no existe',
+                ], 404);
+            }
             return response()->json($imagenes);
         }catch(\Exception $ex){
             return response()->json(['error' => 'Error al encontrar la imagen: ' . $ex->getMessage()], 401);
@@ -30,12 +43,18 @@ class ImagenController extends Controller
     public function selectIdSitioImagen($id_img,$id_sitio){
         try{
             $imagenes = Imagen::where('id_img', $id_img)->where('id_sitio', $id_sitio)->first();
+            if (!$imagenes) {
+            return response()->json([
+                'message' => 'No se existe ninguna imagen y sitio con esos ID',
+                'data' => null,
+            ], 404);
+            }
             return response()->json($imagenes);
         }catch(\Exception $ex){
-            return response()->json(['error' => 'Error al encontrar la imagen: ' . $ex->getMessage()], 401);
+            return response()->json(['error' => 'Error al encontrar la imagen: ' . $ex->getMessage()], 500);
         }
     }
-    public function añadir(Request $request){
+    public function crear(Request $request){
         try{
             $imagenes = Imagen::create([
             'id_sitio' => $request->id_sitio,
@@ -49,7 +68,10 @@ class ImagenController extends Controller
 
     public function borrar($id_img){
         try{
-            $imagenes = Imagen::find($id_img);
+           $imagenes = Imagen::find($id_img);
+            if (!$imagenes) {
+                return response()->json(['error' => 'Imagen no encontrada'], 404);
+            }
             $imagenes->delete();
             return response()->json(['message'=>'Imagen Eliminada', 'code'=>'200'], 200);
         }catch(\Exception $ex){
