@@ -16,7 +16,7 @@ class Turista extends Model
         'cod_visitante', 
         'correo_electronico', 
         'contrasenia', 
-        'documento', 
+        'documento',
         'nombre', 
         'ap_pat', 
         'ap_mat', 
