@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sitio;
+use Validator;
 
 class SitioController extends Controller
 {
@@ -20,22 +21,27 @@ class SitioController extends Controller
         }
     }
     public function registrar(Request $request){
-        try{
-            $sitio = Sitio::create([
-            'correo_electronico' => $request->correo_electronico,
-            'contrasenia' => $request->contrasenia,
-            'documento' => $request->documento,
-            'nombre' => $request->nombre,
-            'ap_pat' => $request->ap_pat,
-            'ap_mat' => $request->ap_mat,
-            'fecha_nac' => $request->fecha_nac,
-            'nacionalidad' => $request->nacionalidad,
-            'prefijo_telefonico' => $request->prefijo_telefonico,
-            'telefono' => $request->telefono
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|string|max:30',
+            'desc_conceptual_sitio' => 'required|string',
+            'desc_historica_sitio' => 'required|string',
+            'costo_sitio' => 'required|numeric|min:0',
+            'id_ubicacion' => 'required|integer|exists:ubicacion,id_ubicacion',
+            'temporada_recomendada' => 'nullable|in:Primavera,Verano,Otoño,Invierno',
+            'recomendacion_climatica' => 'nullable|string',
+            'horario_apertura' => 'nullable|date_format:H:i',
+            'horario_cierre' => 'nullable|date_format:H:i',
+            'Activo' => 'required|boolean',
         ]);
 
-        return response()->json($sitio, 201);
-        }catch (\Exception $e) {
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+
+        try {
+            $sitio = Sitio::create($request->all());
+            return response()->json($sitio, 201);
+        } catch (\Exception $e) {
             return response()->json(['error' => 'Error al registrar el sitio: ' . $e->getMessage()], 500);
         }
     }

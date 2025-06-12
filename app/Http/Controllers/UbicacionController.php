@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ubicacion;
+use Validator;
 
 class UbicacionController extends Controller
 {
@@ -20,6 +21,18 @@ class UbicacionController extends Controller
         }
     }
     public function crear(Request $request){
+        $validator = Validator::make($request->all(), [
+            'departamento' => 'required|string|max:50',
+            'municipio' => 'required|string|max:50',
+            'zona' => 'nullable|string|max:50',
+            'calle' => 'nullable|string|max:100',
+            'latitud' => 'required|numeric|between:-90,90',
+            'longitud' => 'required|numeric|between:-180,180'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
         try{
             $ubicaciones = Ubicacion::create([
             'departamento' => $request->departamento,

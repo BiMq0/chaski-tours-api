@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Imagen;
 use Illuminate\Http\Request;
+use Validator;
 
 class ImagenController extends Controller
 {
@@ -55,6 +56,15 @@ class ImagenController extends Controller
         }
     }
     public function crear(Request $request){
+        $validator = Validator::make($request->all(), [
+            'id_sitio' => 'required|integer|exists:Sitio,id_sitio',
+            'url_img' => 'required|url'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+        
         try{
             $imagenes = Imagen::create([
             'id_sitio' => $request->id_sitio,
