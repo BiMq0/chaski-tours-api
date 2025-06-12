@@ -22,10 +22,10 @@ class UbicacionController extends Controller
     }
     public function crear(Request $request){
         $validator = Validator::make($request->all(), [
-            'departamento' => 'required|string|max:50',
-            'municipio' => 'required|string|max:50',
-            'zona' => 'nullable|string|max:50',
-            'calle' => 'nullable|string|max:100',
+            'departamento' => 'required|in:La Paz,Santa Cruz,Cochabamba,Potosí,Oruro,Chuquisaca,Tarija,Beni,Pando',
+            'municipio' => 'required|string|max:30',
+            'zona' => 'required|string|max:30',
+            'calle' => 'required|string|max:30',
             'latitud' => 'required|numeric|between:-90,90',
             'longitud' => 'required|numeric|between:-180,180'
         ]);

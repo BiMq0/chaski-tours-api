@@ -22,7 +22,7 @@ class SitioCategoriaController extends Controller
     }
     public function añadir(Request $request){
         $validator = Validator::make($request->all(), [
-            'nombre_categoria' => 'required|string|max:50',
+            'nombre_categoria' => 'required|in:Histórico,Arqueológico,Colonial,Religioso,Cultural,Patrimonial,Museo,Batalla,Hito,Arquitectónico,Industrial,Natural_Histórico',
             'id_sitio' => 'required|integer|exists:Sitio,id_sitio'
         ]);
 

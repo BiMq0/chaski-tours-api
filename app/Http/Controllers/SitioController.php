@@ -31,7 +31,7 @@ class SitioController extends Controller
             'recomendacion_climatica' => 'nullable|string',
             'horario_apertura' => 'nullable|date_format:H:i',
             'horario_cierre' => 'nullable|date_format:H:i',
-            'Activo' => 'required|boolean',
+            'Activo' => 'required|boolean'
         ]);
 
         if ($validator->fails()) {
