@@ -89,15 +89,15 @@ Route::delete('/imagenes/borrar/{id_img}', [ImagenController::class,'borrar']);
 
 // UBICACIONES
 
-Route::get('/sitios/ubicaciones', [UbicacionController::class,'selectAll']);
+Route::get('/ubicaciones', [UbicacionController::class,'selectAll']);
 
-Route::get('/sitios/ubicaciones/{departamento}', [UbicacionController::class,'selectDepartamento']);
+Route::get('/ubicaciones/{departamento}', [UbicacionController::class,'selectDepartamento']);
 
-Route::post('/sitios/ubicaciones/crear', [UbicacionController::class,'crear']);
+Route::post('/ubicaciones/crear', [UbicacionController::class,'crear']);
 
-Route::put('/sitios/ubicaciones/{id_ubicacion}', [UbicacionController::class,'actualizar']);
+Route::put('/ubicaciones/{id_ubicacion}', [UbicacionController::class,'actualizar']);
 
-Route::delete('/sitios/ubicaciones/{id_ubicacion}', [UbicacionController::class,'eliminar']);
+Route::delete('/ubicaciones/{id_ubicacion}', [UbicacionController::class,'eliminar']);
 
 // RESERVAS
 
