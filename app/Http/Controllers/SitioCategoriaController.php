@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sitio_Categoria;
 use Illuminate\Http\Request;
+use Validator;
 
 class SitioCategoriaController extends Controller
 {
@@ -20,6 +21,15 @@ class SitioCategoriaController extends Controller
         }
     }
     public function añadir(Request $request){
+        $validator = Validator::make($request->all(), [
+            'nombre_categoria' => 'required|in:Histórico,Arqueológico,Colonial,Religioso,Cultural,Patrimonial,Museo,Batalla,Hito,Arquitectónico,Industrial,Natural_Histórico',
+            'id_sitio' => 'required|integer|exists:Sitio,id_sitio'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+
         try{
             $categoria = Sitio_Categoria::create([
             'nombre_categoria'=>$request->nombre_categoria,
