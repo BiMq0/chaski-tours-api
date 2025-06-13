@@ -13,7 +13,6 @@ class TuristaController extends Controller
         return response()->json(Turista::all());
     }
 
-
     public function selectMail($mail)
     {
         try {
@@ -50,7 +49,7 @@ class TuristaController extends Controller
             $turista = Turista::create([
                 'cod_visitante' => $request->cod_visitante,
                 'correo_electronico' => $request->correo_electronico,
-                'contrasenia' => $request->contrasenia, // TEXTO PLANO
+                'contrasenia' => $request->contrasenia, 
                 'documento' => $request->documento,
                 'nombre' => $request->nombre,
                 'ap_pat' => $request->ap_pat,
@@ -59,9 +58,7 @@ class TuristaController extends Controller
                 'nacionalidad' => $request->nacionalidad,
                 'telefono' => $request->telefono
             ]);
-
             $token = $turista->createToken('api_key')->plainTextToken;
-
             return response()->json([
                 'code' => 201,
                 'data' => $turista,
@@ -71,7 +68,6 @@ class TuristaController extends Controller
             return response()->json(['error' => 'Error al registrar el turista: ' . $e->getMessage()], 500);
         }
     }
-<<<<<<< HEAD
 
     public function actualizar(Request $request, $cod)
     {
@@ -119,21 +115,6 @@ class TuristaController extends Controller
         $validator = Validator::make($request->all(), [
             'correo_electronico' => 'required|email',
             'contrasenia' => 'required'
-=======
-    public function registrar(Request $request){
-        try{
-            $turista = Turista::create([
-            'cod_visitante' => $request->cod_visitante,
-            'correo_electronico' => $request->correo_electronico,
-            'contrasenia' => $request->contrasenia,
-            'documento' => $request->documento,
-            'nombre' => $request->nombre,
-            'ap_pat' => $request->ap_pat,
-            'ap_mat' => $request->ap_mat,
-            'fecha_nac' => $request->fecha_nac,
-            'nacionalidad' => $request->nacionalidad,
-            'telefono' => $request->telefono
->>>>>>> e57d38a82c709678893e7ffef0944f15dbb4fa8a
         ]);
 
         if ($validator->fails()) {
@@ -154,6 +135,4 @@ class TuristaController extends Controller
             'token' => $token
         ], 200);
     }
-    //parte de autencicaccion parte sacntum
-
 }
