@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Visitante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+
 class VisitanteController extends Controller
 {
     // Listar todos los visitantes
@@ -16,7 +17,6 @@ class VisitanteController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
-        
     }
 
     // Mostrar un visitante por código
@@ -34,11 +34,11 @@ class VisitanteController extends Controller
     public function crear(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'tipo_visitante' => 
-            'required|in:Turista,
-            Institucion',
-            'Activo' => 'boolean'
+            'cod_visitante' => 'string',
+            'tipo_visitante' => 'required|in:Turista,Institucion',
+            'activo' => 'boolean' // aquí debe ir en minúsculas
         ]);
+
 
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 400);

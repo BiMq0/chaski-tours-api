@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class InstitucionController extends Controller
 {
-
-    public function selectAll()
+public function selectAll()
     {
         try {
             $instituciones = Institucion::all();
@@ -54,7 +53,7 @@ class InstitucionController extends Controller
             $institucion = Institucion::create([
                 'nombre' => $request->nombre,
                 'correo_electronico' => $request->correo_electronico,
-                'contrasenia' => bcrypt($request->contrasenia),
+                'contrasenia' => $request->contrasenia, // TEXTO PLANO
                 'nacionalidad' => $request->nacionalidad,
                 'telefono' => $request->telefono,
                 'nombre_represent' => $request->nombre_represent,
@@ -62,9 +61,16 @@ class InstitucionController extends Controller
                 'correo_electronico_represent' => $request->correo_electronico_represent,
                 'telefono_represent' => $request->telefono_represent,
             ]);
-            return response()->json($institucion, 201);
+
+            $token = $institucion->createToken('api_key')->plainTextToken;
+
+            return response()->json([
+                'code' => 201,
+                'data' => $institucion,
+                'token' => $token
+            ], 201);
         } catch (\Throwable $e) {
-            return response()->json(['error' => 'Error interno del servidor'.$e->getMessage()], 500);
+            return response()->json(['error' => 'Error al crear la institución: ' . $e->getMessage()], 500);
         }
     }
 
@@ -90,19 +96,13 @@ class InstitucionController extends Controller
         if ($validacion->fails()) {
             return response()->json(['errores' => $validacion->errors()], 400);
         }
-
+        
         try {
-            $datos = $request->all();
-
-            if (isset($datos['contrasenia'])) {
-                $datos['contrasenia'] = bcrypt($datos['contrasenia']);
-            }
-
-            $institucion->update($datos);
-
+        $datos = $request->all();
+        $institucion->update($datos);
             return response()->json($institucion, 200);
         } catch (\Throwable $e) {
-            return response()->json(['error' => 'Error interno del servidor'], 500);
+            return response()->json(['error' => 'Error al actualizar: ' . $e->getMessage()], 500);
         }
     }
 
@@ -116,7 +116,33 @@ class InstitucionController extends Controller
             $institucion->delete();
             return response()->json(['mensaje' => 'Institución eliminada correctamente'], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Error interno del servidor'], 500);
+            return response()->json(['error' => 'Error al eliminar: ' . $e->getMessage()], 500);
         }
+    }
+
+    public function login(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'correo_electronico' => 'required|email',
+            'contrasenia' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errores' => $validator->errors()], 400);
+        }
+
+        $institucion = Institucion::where('correo_electronico', $request->correo_electronico)->first();
+
+        if (!$institucion || $institucion->contrasenia !== $request->contrasenia) {
+            return response()->json(['error' => 'Credenciales incorrectas'], 401);
+        }
+
+        $token = $institucion->createToken('api_key')->plainTextToken;
+
+        return response()->json([
+            'mensaje' => 'Inicio de sesión correcto',
+            'data' => $institucion,
+            'token' => $token
+        ], 200);
     }
 }

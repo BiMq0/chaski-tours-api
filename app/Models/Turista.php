@@ -5,23 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Sanctum\HasApiTokens;
+
 class Turista extends Model
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens;
     protected $table = 'Turistas';
     protected $primaryKey = 'cod_visitante';
     public $incrementing = false;
     protected $keyType = 'string';
     protected $fillable = [
-        'cod_visitante', 
-        'correo_electronico', 
-        'contrasenia', 
+        'cod_visitante',
+        'correo_electronico',
+        'contrasenia',
         'documento',
-        'nombre', 
-        'ap_pat', 
-        'ap_mat', 
-        'fecha_nac', 
-        'nacionalidad', 
+        'nombre',
+        'ap_pat',
+        'ap_mat',
+        'fecha_nac',
+        'nacionalidad',
         'telefono'
     ];
     //protected $hidden = ['contrasenia'];
@@ -41,5 +43,14 @@ class Turista extends Model
     {
         return $this->belongsTo(Nacionalidad::class, 'nacionalidad', 'nacionalidad');
     }
+    //parte de sactum
+    public function getAuthIdentifierName()
+    {
+        return 'cod_visitante';
+    }
 
+    public function getAuthIdentifier()
+    {
+        return $this->cod_visitante;
+    }
 }
