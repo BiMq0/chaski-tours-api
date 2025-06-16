@@ -71,41 +71,41 @@ Route::delete('/sitios/{id}', [SitioController::class,'eliminar']);
 
 // SITIO_CATEGORIA
 
-Route::get('/sitios/categorias', [SitioCategoriaController::class,'selectAll']);
+Route::get('/categorias', [SitioCategoriaController::class,'selectAll']);
 
-Route::get('/sitios/categorias{nombre_categoria}', [SitioCategoriaController::class,'selectNombreCategoria']);
+Route::get('/categorias/{nombre_categoria}', [SitioCategoriaController::class,'selectNombreCategoria']);
 
-Route::post('/sitios/categorias/crear', [SitioCategoriaController::class,'añadir']);
+Route::post('/categorias/crear', [SitioCategoriaController::class,'añadir']);
 
-Route::put('/sitios/categorias{nombre_categoria}', [SitioCategoriaController::class,'actualizar']);
+Route::put('/categorias/{nombre_categoria}', [SitioCategoriaController::class,'actualizar']);
 
-Route::delete('/sitios/categorias{nombre_categoria}', [SitioCategoriaController::class,'eliminar']);
+Route::delete('/categorias/{nombre_categoria}', [SitioCategoriaController::class,'eliminar']);
 
 // IMAGENES
 
-Route::get('/sitios/imagenes', [ImagenController::class,'selectAll']);
+Route::get('/imagenes', [ImagenController::class,'selectAll']);
 
-Route::get('/sitios/imagenes/{id_img}', [ImagenController::class,'selectId']);
+Route::get('/imagenes/{id_img}', [ImagenController::class,'selectId']);
 
-Route::get('/sitios/imagenes/{id_sitio}', [ImagenController::class,'selectIdSitio']);
+Route::get('/imagenes/{id_sitio}', [ImagenController::class,'selectIdSitio']);
 
-Route::get('/sitios/imagenes/{id_img}{id_sitio}', [ImagenController::class,'selectIdSitioImagen']);
+Route::get('/imagenes/{id_sitio}/{id_img}', [ImagenController::class,'selectIdSitioImagen']);
 
-Route::post('/sitios/imagenes/añadir', [ImagenController::class,'añadir']);
+Route::post('/imagenes/añadir', [ImagenController::class,'añadir']);
 
-Route::delete('/sitios/imagenes/{id_img}', [ImagenController::class,'eliminar']);
+Route::delete('/imagenes/{id_img}', [ImagenController::class,'eliminar']);
 
 // UBICACIONES
 
-Route::get('/sitios/ubicaciones', [UbicacionController::class,'selectAll']);
+Route::get('/ubicaciones', [UbicacionController::class,'selectAll']);
 
-Route::get('/sitios/ubicaciones/{departamento}', [UbicacionController::class,'selectDepartamento']);
+Route::get('/ubicaciones/{departamento}', [UbicacionController::class,'selectDepartamento']);
 
-Route::post('/sitios/ubicaciones/crear', [UbicacionController::class,'crear']);
+Route::post('/ubicaciones/crear', [UbicacionController::class,'crear']);
 
-Route::put('/sitios/ubicaciones/{id_ubicacion}', [UbicacionController::class,'actualizar']);
+Route::put('/ubicaciones/{id_ubicacion}', [UbicacionController::class,'actualizar']);
 
-Route::delete('/sitios/ubicaciones/{id_ubicacion}', [UbicacionController::class,'eliminar']);
+Route::delete('/ubicaciones/{id_ubicacion}', [UbicacionController::class,'eliminar']);
 
 // RESERVAS
 
@@ -142,13 +142,13 @@ Route::delete('/tour/{id}', [TourController::class,'eliminar']);
 
 Route::get('/ruta', [RutaController::class,'selectAll']);
 
-Route::get('/ruta/{id_tour}/{id_sitio}', [RutaController::class,'selectId']);
+Route::get('/ruta/{id_tour}', [RutaController::class,'selectId']);
 
 Route::post('/ruta/crear', [RutaController::class,'crear']);
 
-Route::put('/ruta/{id_tour}/{id_sitio}', [RutaController::class,'actualizar']);
+Route::put('/ruta/{id_tour}', [RutaController::class,'actualizar']);
 
-Route::delete('/ruta/{id_tour}/{id_sitio}', [RutaController::class,'eliminar']);
+Route::delete('/ruta/{id_tour}', [RutaController::class,'eliminar']);
 
 //TRANSPORTE
 
