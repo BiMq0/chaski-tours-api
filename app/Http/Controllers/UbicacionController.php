@@ -7,18 +7,20 @@ use App\Models\Ubicacion;
 
 class UbicacionController extends Controller
 {
-        public function selectAll(){
+    public function selectAll(){
         $imagenes = Ubicacion::all();
         return response()->json($imagenes);
     }
-    public function selectDepartamento($departamento){
+
+    public function selectId($id){
         try{
-            $ubicaciones = Ubicacion::where('departamento', $departamento)->get();
+            $ubicaciones = Ubicacion::where('id_ubicacion', $id)->get();
             return response()->json($ubicaciones);
         }catch(\Exception $ex){
-            return response()->json(['error' => 'Error al encontrar el departamento: ' . $ex->getMessage()], 401);
+            return response()->json(['error' => 'Error al encontrar la ubicación: ' . $ex->getMessage()], 401);
         }
     }
+
     public function crear(Request $request){
         try{
             $ubicaciones = Ubicacion::create([
