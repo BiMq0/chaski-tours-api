@@ -5,18 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Visitante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+
 class VisitanteController extends Controller
 {
     // Listar todos los visitantes
     public function selectAll()
     {
-        try {
-            $visitantes = Visitante::all();
-            return response()->json($visitantes);
-        } catch (\Throwable $e) {
-            return response()->json(['error' => 'Error del servidor'], 500);
+        $visitantes = DB::table('Visitantes')->get();
+
+        foreach ($visitantes as $v) {
+            if ($v->tipo_visitante === 'Turista') {
+                $turista = DB::table('Turistas')->where('cod_visitante', $v->cod_visitante)->first();
+                $v->nombre_completo = $turista ? ($turista->nombre . ' ' . $turista->ap_pat . ' ' . ($turista->ap_mat ?? '')) : 'Sin nombre';
+            } else if ($v->tipo_visitante === 'Institucion') {
+                $institucion = DB::table('Instituciones')->where('cod_visitante', $v->cod_visitante)->first();
+                $v->nombre_completo = $institucion ? $institucion->nombre : 'Sin nombre';
+            }
         }
-        
+
+        return response()->json($visitantes);
     }
 
     // Mostrar un visitante por código

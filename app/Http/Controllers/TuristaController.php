@@ -18,6 +18,17 @@ class TuristaController extends Controller
             return response()->json(['error' => 'Error al registrar el turista: ' . $e->getMessage()], 500);
         }
     }
+    public function selectCodigo($codigo){
+    try{
+        $turista = Turista::where('cod_visitante', $codigo)->first();
+        if(!$turista) {
+            return response()->json(['error' => 'Turista no encontrado'], 404);
+        }
+        return response()->json($turista);
+    }catch(\Exception $e){
+        return response()->json(['error' => 'Error al buscar el turista: ' . $e->getMessage()], 500);
+    }
+}
     public function registrar(Request $request){
         try{
             $turista = Turista::create([

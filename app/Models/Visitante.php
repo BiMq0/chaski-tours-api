@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
-
 class Visitante extends Model
 {
     protected $table = 'Visitantes';
@@ -11,10 +8,11 @@ class Visitante extends Model
     public $incrementing = false; 
     protected $keyType = 'string';
     public $timestamps = true;
-
     protected $fillable = [
         'cod_visitante',
         'tipo_visitante',
         'Activo'
     ];
 }
+
+
