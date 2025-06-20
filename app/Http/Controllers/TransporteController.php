@@ -31,8 +31,6 @@ class TransporteController extends Controller
                 'año' => $request->año, 
                 'disponible' => $request->disponible, 
                 'Activo'=> $request->Activo
-
-
             ]);
 
             return response()->json($transporte, 201);

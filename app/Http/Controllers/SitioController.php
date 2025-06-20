@@ -19,19 +19,19 @@ class SitioController extends Controller
             return response()->json(['error' => 'Error al consultar el sitio: ' . $e->getMessage()], 500);
         }
     }
-    public function registrar(Request $request){
+    public function crear(Request $request){
         try{
             $sitio = Sitio::create([
-            'correo_electronico' => $request->correo_electronico,
-            'contrasenia' => $request->contrasenia,
-            'documento' => $request->documento,
             'nombre' => $request->nombre,
-            'ap_pat' => $request->ap_pat,
-            'ap_mat' => $request->ap_mat,
-            'fecha_nac' => $request->fecha_nac,
-            'nacionalidad' => $request->nacionalidad,
-            'prefijo_telefonico' => $request->prefijo_telefonico,
-            'telefono' => $request->telefono
+            'desc_conceptual_sitio' => $request->desc_conceptual_sitio,
+            'desc_historica_sitio' => $request->desc_historica_sitio,
+            'temporada_recomendada' => $request->temporada_recomendada,
+            'recomendacion_climatica' => $request->recomendacion_climatica,
+            'costo_sitio' => $request->costo_sitio,
+            'id_ubicacion' => $request->id_ubicacion,
+            'horario_apertura' => $request->horario_apertura,
+            'horario_cierre' => $request->horario_cierre,
+            'Activo' => $request->activo,
         ]);
 
         return response()->json($sitio, 201);
