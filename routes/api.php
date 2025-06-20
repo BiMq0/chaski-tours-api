@@ -63,7 +63,7 @@ Route::get('/sitios', [SitioController::class,'selectAll']);
 
 Route::get('/sitios/{id}', [SitioController::class,'selectId']);
 
-Route::post('/sitios/crear', [SitioController::class,'crear']);
+Route::post('/sitios', [SitioController::class,'crear']);
 
 Route::put('/sitios/{id}', [SitioController::class,'actualizar']);
 
@@ -101,7 +101,7 @@ Route::get('/ubicaciones', [UbicacionController::class,'selectAll']);
 
 Route::get('/ubicaciones/{id}', [UbicacionController::class,'selectId']);
 
-Route::post('/ubicaciones/crear', [UbicacionController::class,'crear']);
+Route::post('/ubicaciones', [UbicacionController::class,'crear']);
 
 Route::put('/ubicaciones/{id_ubicacion}', [UbicacionController::class,'actualizar']);
 
@@ -119,8 +119,6 @@ Route::put('/reservas/{id}', [ReservaController::class,'actualizar']);
 
 Route::delete('/reservas/{id}', [ReservaController::class,'eliminar']);
 
-
-// RESERVAS_TRANSPORTES
 
 // NACIONALIDAD
 

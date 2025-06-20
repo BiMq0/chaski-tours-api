@@ -23,7 +23,7 @@ class UbicacionController extends Controller
 
     public function crear(Request $request){
         try{
-            $ubicaciones = Ubicacion::create([
+            $ubicacion = Ubicacion::create([
             'departamento' => $request->departamento,
             'municipio' => $request->municipio,           
             'zona' => $request->zona,
@@ -31,7 +31,7 @@ class UbicacionController extends Controller
             'latitud' => $request->latitud,
             'longitud' => $request->longitud,
         ]);
-        return response()->json($ubicaciones, 201);
+        return response()->json($ubicacion, 201);
         }catch (\Exception $ex) {
             return response()->json(['error' => 'Error al añadir ubicación: ' . $ex->getMessage()], status: 500);
         }
@@ -39,21 +39,23 @@ class UbicacionController extends Controller
 
     public function actualizar(Request $request, $id_ubicacion){
         try{
-            $ubicaciones = Ubicacion::find($id_ubicacion);
-            $request->departamento ? $ubicaciones->id_sitio = $request->id_sitio : null;
-            $request->municipio ? $ubicaciones->municipio = $request->municipio : null;          
-            $request->zona ? $ubicaciones->zona = $request->zona : null;
-            $request->calle ? $ubicaciones->calle = $request->calle : null;
-            $request->latitud ? $ubicaciones->latitud = $request->latitud : null;
-            $request->longitud ? $ubicaciones->longitud = $request->longitud : null;
-            $ubicaciones->save();
-            return response()->json($ubicaciones, 200);
+            $ubicacion = Ubicacion::find($id_ubicacion);
+            $request->departamento ? $ubicacion->departamento = $request->departamento : null;
+            $request->municipio ? $ubicacion->municipio = $request->municipio : null;          
+            $request->zona ? $ubicacion->zona = $request->zona : null;
+            $request->calle ? $ubicacion->calle = $request->calle : null;
+            $request->latitud ? $ubicacion->latitud = $request->latitud : null;
+            $request->longitud ? $ubicacion->longitud = $request->longitud : null;
+            $request->created_at ? $ubicacion->created_at = $request->created_at : null;
+            $request->updated_at ? $ubicacion->updated_at = $request->updated_at : null;
+            $ubicacion->save();
+            return response()->json($ubicacion, 200);
         }catch (\Exception $ex){
             return response()->json(data: $ex->getMessage());
         }
     }
 
-    public function borrar($id_ubicacion){
+    public function eliminar($id_ubicacion){
         try{
             $ubicaciones = Ubicacion::find($id_ubicacion);
             $ubicaciones->delete();
