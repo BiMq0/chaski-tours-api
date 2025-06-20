@@ -9,6 +9,7 @@ class Transporte extends Model
     protected $table = 'Transporte';
     protected $primaryKey = 'id_vehiculo';
     protected $fillable = [
+        'id_vehiculo',
     'matricula', 
     'marca', 
     'modelo', 

@@ -154,7 +154,7 @@ Route::get('/transporte', [TransporteController::class,'selectAll']);
 
 Route::get('/transporte/{id}', [TransporteController::class,'selectId']);
 
-Route::post('/transporte/crear', [TransporteController::class,'crear']);
+Route::post('/transporte', [TransporteController::class,'crear']);
 
 Route::put('/transporte/{id}', [TransporteController::class,'actualizar']);
 
