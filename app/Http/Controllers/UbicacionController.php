@@ -14,7 +14,7 @@ class UbicacionController extends Controller
 
     public function selectId($id){
         try{
-            $ubicaciones = Ubicacion::where('id_ubicacion', $id)->get();
+            $ubicaciones = Ubicacion::find($id);
             return response()->json($ubicaciones);
         }catch(\Exception $ex){
             return response()->json(['error' => 'Error al encontrar la ubicación: ' . $ex->getMessage()], 401);
