@@ -15,3 +15,5 @@ class Alojamiento extends Model
     ];
     public $timestamps = true;
 }
+
+

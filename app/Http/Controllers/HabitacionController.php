@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class HabitacionController extends Controller
 {
-    
+
     // Mostrar todas las habitaciones
     public function selectAll()
     {
@@ -39,26 +39,38 @@ class HabitacionController extends Controller
     // Crear una nueva habitación
     public function crear(Request $request)
     {
+        $validador = Validator::make($request->all(), [
+            'id_alojamiento' => 'required|integer|exists:Alojamiento,id_alojamiento',
+            'tipo_habitacion' => 'required|in:Individual,Doble,Suite,Familiar',
+            'capacidad' => 'required|integer|min:1',
+            'disponible' => 'boolean'
+        ]);
+
+        if ($validador->fails()) {
+            return response()->json(['errores' => $validador->errors()], 422);
+        }
+
         try {
-            $validador = Validator::make($request->all(), [
-                'nro_habitacion' => 'required|string|max:10',
-                'id_alojamiento' => 'required|integer|exists:Alojamiento,id_alojamiento',
-                'tipo_habitacion' => 'required|string|max:50',
-                'capacidad' => 'required|integer|min:1',
-                'disponible' => 'boolean'
-            ]);
+            // No envíes nro_habitacion en el request porque lo genera el trigger
+            $habitacion = new Habitacion();
+            $habitacion->id_alojamiento = $request->id_alojamiento;
+            $habitacion->tipo_habitacion = $request->tipo_habitacion;
+            $habitacion->capacidad = $request->capacidad;
+            $habitacion->disponible = $request->disponible ?? true; // por si no viene
+            $habitacion->save();  // Aquí el trigger generará nro_habitacion
 
-            if ($validador->fails()) {
-                return response()->json(['errores' => $validador->errors()], 422);
-            }
 
-            $habitacion = Habitacion::create($request->all());
-
-            return response()->json(['mensaje' => 'Habitación creada exitosamente', 'habitacion' => $habitacion], 201);
+            return response()->json([
+                'mensaje' => 'Habitación creada exitosamente',
+                'habitacion' => $habitacion
+            ], 201);
         } catch (\Throwable $e) {
-            return response()->json(['error' => 'Error del servidor'], 500);
+            return response()->json(['error' => 'Error del servidor: ' . $e->getMessage()], 500);
         }
     }
+
+
+
 
     // Actualizar una habitación
     public function selectId(Request $request, $id)

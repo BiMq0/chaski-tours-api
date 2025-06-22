@@ -42,7 +42,7 @@ class AlojamientoController extends Controller{
             $validador = Validator::make($request->all(), [
                 'nombre_aloj' => 'required|string|max:25',
                 'nro_estrellas' => 'required|numeric|min:0',
-                'nro_habitaciones' => 'required|integer|min:1',
+                'nro_habitacion' => 'required|integer|min:1',
                 'Activo' => 'boolean'
             ]);
 
