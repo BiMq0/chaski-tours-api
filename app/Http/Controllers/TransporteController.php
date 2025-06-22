@@ -47,8 +47,8 @@ class TransporteController extends Controller
         $request->modelo ? $transporte->modelo = $request->modelo : null;
         $request->capacidad ? $transporte->capacidad = $request->capacidad : null;
         $request->año ? $transporte->año = $request->año : null;
-        $request->disponible ? $transporte->disponible = $request->disponible : null;
-        $request->Activo ? $transporte->Activo = $request->Activo : null;
+        $transporte->disponible = $request->input('disponible', $transporte->disponible);
+        $transporte->Activo = $request->input('Activo', $transporte->Activo);
         $transporte->save();
         return response()->json($transporte, 200);
     }catch (\Exception $ex){

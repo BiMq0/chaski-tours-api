@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reserva extends Model
 {
     public $timestamps = false;
+    protected $primaryKey  = "id_reserva";
     protected $table = 'Reserva';
     protected $fillable = [
         'cod_visitante', 
