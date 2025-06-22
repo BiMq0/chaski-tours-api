@@ -25,7 +25,6 @@ public function crear(Request $request){
     try{
         $reserva = Reserva::create([
             'cod_visitante' => $request->cod_visitante,
-            'id_alojamiento' => $request->id_alojamiento,
             'id_salida' => $request->id_salida,
             'cantidad_personas' => $request->cantidad_personas,
             'costo_total_reserva' => $request->costo_total_reserva
@@ -41,7 +40,6 @@ public function actualizar(Request $request, $id){
     try{
         $reserva = Reserva::find($id);
         $request->cod_visitante ? $reserva->cod_visitante = $request->cod_visitante : null;
-        $request->id_alojamiento ? $reserva->id_alojamiento = $request->id_alojamiento : null;
         $request->id_salida ? $reserva->id_salida = $request->id_salida : null;
         $request->cantidad_personas ? $reserva->cantidad_personas = $request->cantidad_personas : null;
         $request->costo_total_reserva ? $reserva->costo_total_reserva = $request->costo_total_reserva : null;
