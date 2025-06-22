@@ -95,21 +95,47 @@ class VisitanteController extends Controller
         }
     }
 
-    // Eliminar visitante
-    public function eliminar($cod)
+    // Desactivar visitante (borrado lógico)
+    public function desactivar($cod_visitante)
     {
         try {
-            $visitante = Visitante::find($cod);
-
+            $visitante = Visitante::find($cod_visitante);
             if (!$visitante) {
-                return response()->json(['mensaje' => 'Visitante no encontrado'], 404);
+                return response()->json(['error' => 'Visitante no encontrado'], 404);
             }
 
-            $visitante->delete();
+            $visitante->update(['Activo' => false]);
 
-            return response()->json(['mensaje' => 'Visitante eliminado correctamente']);
-        } catch (\Throwable $e) {
-            return response()->json(['error' => 'Error del servidor'], 500);
+            return response()->json([
+                'mensaje' => 'Visitante desactivado correctamente',
+                'cod_visitante' => $cod_visitante,
+                'tipo' => $visitante->tipo_visitante,
+                'estado' => 'Inactivo (0)'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error interno: ' . $e->getMessage()], 500);
+        }
+    }
+
+    // Reactivar visitante
+    public function reactivar($cod_visitante)
+    {
+        try {
+            $visitante = Visitante::find($cod_visitante);
+            if (!$visitante) {
+                return response()->json(['error' => 'Visitante no encontrado'], 404);
+            }
+
+            $visitante->update(['Activo' => true]);
+
+            return response()->json([
+                'mensaje' => 'Visitante reactivado correctamente',
+                'cod_visitante' => $cod_visitante,
+                'tipo' => $visitante->tipo_visitante,
+                'estado' => 'Activo (1)'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error interno: ' . $e->getMessage()], 500);
         }
     }
 }

@@ -49,12 +49,11 @@ class InstitucionController extends Controller
         if ($validacion->fails()) {
             return response()->json(['errores' => $validacion->errors()], 400);
         }
-
         try {
             $institucion = Institucion::create([
                 'nombre' => $request->nombre,
                 'correo_electronico' => $request->correo_electronico,
-                'contrasenia' => bcrypt($request->contrasenia),
+                'contrasenia' => $request->contrasenia,
                 'nacionalidad' => $request->nacionalidad,
                 'telefono' => $request->telefono,
                 'nombre_represent' => $request->nombre_represent,

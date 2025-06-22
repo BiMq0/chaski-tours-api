@@ -27,14 +27,15 @@ Route::get('/visitantes', [VisitanteController::class, 'selectAll']);
 Route::get('/visitante/{cod}', [VisitanteController::class, 'selectId']);
 Route::post('/visitante', [VisitanteController::class, 'crear']);
 Route::put('/visitante/{cod}', [VisitanteController::class, 'actualizar']);
-Route::delete('/visitante/{cod}', [VisitanteController::class, 'eliminar']);
+
+    Route::patch('visitante/desactivar{cod_visitante}', [VisitanteController::class, 'desactivar']);
+    Route::patch('visitante/activar{cod_visitante}', [VisitanteController::class, 'reactivar']);
 
 // TURISTAS
 
 Route::get('/visitantes/turistas/', [TuristaController::class,'selectAll']);
 Route::get('/visitantes/turistas/{mail}', [TuristaController::class,'selectMail']);
 Route::get('/visitantes/turistas/cod/{cod_visitante}', [TuristaController::class,'selectCodigo']);
-
 Route::post('/visitantes/turistas/crear', [TuristaController::class,'registrar']);
 Route::put('/visitantes/turistas/{cod}', [TuristaController::class,'actualizar']);
 Route::delete('/visitantes/turistas/{cod}', [TuristaController::class,'borrar']);
@@ -159,7 +160,7 @@ Route::delete('/ruta/{id_tour}', [RutaController::class,'eliminar']);
 
 //TRANSPORTE
 
-Route::get('/transporte', [TransporteController::class,'selectAll']);
+Route::get('/transportes', [TransporteController::class,'selectAll']);
 Route::get('/transporte/{id}', [TransporteController::class,'selectId']);
 Route::post('/transporte/crear', [TransporteController::class,'crear']);
 

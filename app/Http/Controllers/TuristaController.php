@@ -30,7 +30,6 @@ class TuristaController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'cod_visitante' => 'required|unique:Turistas',
                 'correo_electronico' => 'required|email|unique:Turistas',
                 'contrasenia' => 'required|min:4',
                 'documento' => 'required',
@@ -49,7 +48,7 @@ class TuristaController extends Controller
             $turista = Turista::create([
                 'cod_visitante' => $request->cod_visitante,
                 'correo_electronico' => $request->correo_electronico,
-                'contrasenia' => $request->contrasenia, 
+                'contrasenia' => $request->contrasenia,
                 'documento' => $request->documento,
                 'nombre' => $request->nombre,
                 'ap_pat' => $request->ap_pat,
@@ -58,28 +57,29 @@ class TuristaController extends Controller
                 'nacionalidad' => $request->nacionalidad,
                 'telefono' => $request->telefono
             ]);
-            $token = $turista->createToken('api_key')->plainTextToken;
+            // $token = $turista->createToken('api_key')->plainTextToken;
             return response()->json([
                 'code' => 201,
                 'data' => $turista,
-                'token' => $token
+                //  'token' => $token
             ], 201);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al registrar el turista: ' . $e->getMessage()], 500);
         }
     }
-    public function selectCodigo($codigo){
-    try{
-        $turista = Turista::where('cod_visitante', $codigo)->first();
-        if(!$turista) {
-            return response()->json(['error' => 'Turista no encontrado'], 404);
+    public function selectCodigo($codigo)
+    {
+        try {
+            $turista = Turista::where('cod_visitante', $codigo)->first();
+            if (!$turista) {
+                return response()->json(['error' => 'Turista no encontrado'], 404);
+            }
+            return response()->json($turista);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al buscar el turista: ' . $e->getMessage()], 500);
         }
-        return response()->json($turista);
-    }catch(\Exception $e){
-        return response()->json(['error' => 'Error al buscar el turista: ' . $e->getMessage()], 500);
     }
-}
-    
+
 
     public function actualizar(Request $request, $cod)
     {
