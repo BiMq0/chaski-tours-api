@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Habitacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Alojamiento;
 
 class HabitacionController extends Controller
 {
@@ -33,6 +34,46 @@ class HabitacionController extends Controller
             return response()->json($habitacion);
         } catch (\Throwable $e) {
             return response()->json(['error' => 'Error del servidor'], 500);
+        }
+    }
+
+    //mostrar habitaciones de un alojamiento
+    public function habitacionesParaDataGrid($id_alojamiento)
+    {
+        try {
+            // Verificar si el alojamiento existe
+            $alojamiento = Alojamiento::find($id_alojamiento);
+
+            if (!$alojamiento) {
+                return response()->json(['error' => 'Alojamiento no encontrado'], 404);
+            }
+
+            // Obtener las habitaciones con campos específicos
+            $habitaciones = Habitacion::where('id_alojamiento', $id_alojamiento)
+                ->select([
+                    'nro_habitacion',  // Número visible al usuario
+                    'tipo_habitacion',
+                    'capacidad',
+                    'disponible'
+                ])
+                ->get()
+                ->map(function ($habitacion) {
+                    return [
+                        'nro' => $habitacion->nro_habitacion,  // Clave "nro" para el frontend
+                        'tipo' => $habitacion->tipo_habitacion,
+                        'capacidad' => $habitacion->capacidad,
+                        'disponible' => $habitacion->disponible ? 'Disponible' : 'Ocupada', // Formato legible
+                        'disponible_raw' => (bool) $habitacion->disponible
+                    ];
+                });
+
+            return response()->json([
+                'alojamiento' => $alojamiento->nombre_aloj,
+                'nro_estrellas' => $alojamiento->nro_estrellas,
+                'data' => $habitaciones // Estructura optimizada para DataGrid
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json(['error' => 'Error del servidor: ' . $e->getMessage()], 500);
         }
     }
 
@@ -68,39 +109,33 @@ class HabitacionController extends Controller
             return response()->json(['error' => 'Error del servidor: ' . $e->getMessage()], 500);
         }
     }
-
-
-
-
-    // Actualizar una habitación
-    public function selectId(Request $request, $id)
+    //actualiza habitacion
+    public function actualizaHabitacion(Request $request)
     {
-        try {
-            $habitacion = Habitacion::find($id);
+        $validador = Validator::make($request->all(), [
+            'nro_habitacion' => 'required|integer',
+            'id_alojamiento' => 'required|integer|exists:Alojamiento,id_alojamiento',
+            'disponible' => 'required|boolean',
+        ]);
 
-            if (!$habitacion) {
-                return response()->json(['mensaje' => 'Habitación no encontrada'], 404);
-            }
-
-            $validador = Validator::make($request->all(), [
-                'nro_habitacion' => 'sometimes|required|string|max:10',
-                'id_alojamiento' => 'sometimes|required|integer|exists:Alojamiento,id_alojamiento',
-                'tipo_habitacion' => 'sometimes|required|string|max:50',
-                'capacidad' => 'sometimes|required|integer|min:1',
-                'disponible' => 'boolean'
-            ]);
-
-            if ($validador->fails()) {
-                return response()->json(['errores' => $validador->errors()], 422);
-            }
-
-            $habitacion->update($request->all());
-
-            return response()->json(['mensaje' => 'Habitación actualizada correctamente', 'habitacion' => $habitacion]);
-        } catch (\Throwable $e) {
-            return response()->json(['error' => 'Error del servidor'], 500);
+        if ($validador->fails()) {
+            return response()->json(['errores' => $validador->errors()], 422);
         }
+
+        $habitacion = Habitacion::where('nro_habitacion', $request->nro_habitacion)
+            ->where('id_alojamiento', $request->id_alojamiento)
+            ->first();
+
+        if (!$habitacion) {
+            return response()->json(['mensaje' => 'Habitación no encontrada'], 404);
+        }
+
+        $habitacion->disponible = $request->disponible;
+        $habitacion->save();
+
+        return response()->json(['mensaje' => 'Habitación actualizada correctamente', 'habitacion' => $habitacion]);
     }
+
 
     // Eliminar una habitación
     public function eliminar($id)

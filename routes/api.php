@@ -175,15 +175,21 @@ Route::get('/alojamientos', [AlojamientoController::class, 'selectAll']);
 Route::get('/alojamientos/{id}', [AlojamientoController::class, 'selectId']);
 Route::post('/alojamientos', [AlojamientoController::class, 'crear']);
 Route::put('/alojamientos/{id}', [AlojamientoController::class, 'actualizar']);
-Route::delete('/alojamientos/{id}', [AlojamientoController::class, 'eliminar']);
+
+Route::put('/alojamientos/desactivar/{id}', [AlojamientoController::class, 'desactivar']);
+
 
 //Habitacion
 
 Route::get('/habitaciones', [HabitacionController::class, 'selectAll']);
 Route::get('/habitaciones/{id}', [HabitacionController::class, 'SelectId']);
 Route::post('/habitaciones', [HabitacionController::class, 'crear']);
-Route::put('/habitaciones/{id}', [HabitacionController::class, 'actualizar']);
+Route::put('/habitaciones/actualizar', [HabitacionController::class, 'actualizaHabitacion']);
+
 Route::delete('/habitaciones/{id}', [HabitacionController::class, 'eliminar']);
+// Nuevo  para registrar alojamiento con habitaciones
+Route::post('/alojamiento-con-habitaciones', [AlojamientoController::class, 'crearConHabitaciones']);
+Route::get('/habitaciones/alojamiento/{id_alojamiento}', [HabitacionController::class, 'habitacionesParaDataGrid']);
 
 // calendario salidas
 

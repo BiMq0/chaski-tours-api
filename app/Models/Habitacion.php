@@ -5,10 +5,6 @@ use App\Models\Alojamiento;
 class Habitacion extends Model
 {
     protected $table = 'Habitacion';
-
-    // Ahora la PK es 'id' (auto_increment), no es necesario cambiar $primaryKey porque 'id' es por defecto
-    // protected $primaryKey = 'id'; // Opcional
-
     public $timestamps = false;
 
     protected $fillable = [
