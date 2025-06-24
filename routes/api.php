@@ -125,6 +125,9 @@ Route::delete('/ubicaciones/{id_ubicacion}', [UbicacionController::class,'elimin
 
 Route::get('/reservas', [ReservaController::class,'selectAll']);
 Route::get('/reservas/{id}', [ReservaController::class,'selectId']);
+Route::get('/reservas/cod/{cod_visitante}', [ReservaController::class, 'selectCOD']);
+
+
 Route::post('/reservas/crear', [ReservaController::class,'crear']);
 Route::put('/reservas/{id}', [ReservaController::class,'actualizar']);
 Route::delete('/reservas/{id}', [ReservaController::class,'eliminar']);

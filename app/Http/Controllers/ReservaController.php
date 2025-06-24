@@ -11,7 +11,20 @@ class ReservaController extends Controller
     $reservas = Reserva::all();
     return response()->json($reservas);
 }
+public function selectCOD($cod_visitante)
+{
+    try {
+        $reservas = Reserva::where('cod_visitante', $cod_visitante)->get();
 
+        if ($reservas->isEmpty()) {
+            return response()->json(['message' => 'No hay reservas para este visitante'], 200);
+        }
+
+        return response()->json($reservas);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Error al obtener las reservas: ' . $e->getMessage()], 500);
+    }
+}
 public function selectId($id){
     try{
         $reserva = Reserva::find($id);
