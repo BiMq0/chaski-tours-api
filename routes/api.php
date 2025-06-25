@@ -140,10 +140,10 @@ Route::get('/nacionalidades', [NacionalidadController::class,'selectAll']);
 //TOUR
 
 Route::get('/tour', [TourController::class,'selectAll']);
-Route::get('/tour/{id}', [TourController::class,'selectId']);
+Route::get('/tour/{id_tour}', [TourController::class,'selectId']);
 Route::post('/tour/crear', [TourController::class,'crear']);
-Route::put('/tour/{id}', [TourController::class,'actualizar']);
-Route::delete('/tour/{id}', [TourController::class,'eliminar']);
+Route::put('/tour/{id_tour}', [TourController::class,'actualizar']);
+Route::delete('/tour/{id_tour}', [TourController::class,'eliminar']);
 
 //RUTA
 
