@@ -43,7 +43,8 @@ Route::delete('/visitantes/turistas/{cod}', [TuristaController::class,'borrar'])
 // INSTITUCIONES
 
 Route::get('/visitantes/instituciones', [InstitucionController::class, 'selectAll']); 
-Route::get('/visitantes/instituciones/{cod_visitante}', [InstitucionController::class, 'selectId']); 
+Route::get('/visitantes/instituciones/{mail}', [InstitucionController::class,'selectMail']);
+Route::get('/visitantes/instituciones/cod/{cod_visitante}', [InstitucionController::class, 'selectId']); 
 Route::post('/visitantes/instituciones', [InstitucionController::class, 'crear']); 
 Route::put('/visitantes/instituciones/{cod_visitante}', [InstitucionController::class, 'actualizar']); 
 Route::delete('/visitantes/instituciones/{cod_visitante}', [InstitucionController::class, 'eliminar']); 
