@@ -68,7 +68,7 @@ class TourController extends Controller
     public function eliminar($id){
         try{
             $tour = Tour::find($id);
-            $tour->delete();
+            $tour->Activo=false;
             return response()->json(['message'=>'Tour Eliminado', 'code'=>'200'], 200);
         }catch(\Exception $ex){
             return response()->json(['error' => $ex->getMessage()], 500);
