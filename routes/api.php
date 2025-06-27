@@ -109,7 +109,7 @@ Route::get('/imagenes/{id_sitio}/{id_img}', [ImagenController::class,'selectIdSi
 
 Route::post('/imagenes/crear', [ImagenController::class,'añadir']);
 
-Route::delete('/imagenes/{id_img}', [ImagenController::class,'eliminar']);
+Route::delete('/imagenes/{id_img}', [ImagenController::class,'borrar']);
 
 // UBICACIONES
 
