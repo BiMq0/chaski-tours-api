@@ -30,7 +30,7 @@ class CalendarioSalidasController extends Controller
             }
             return response()->json($salida, 200);
         } catch (\Throwable $e) {
-            return response()->json(['error' => 'Error interno del servidor'], 500);
+            return response()->json(['error' => 'Error interno del servidor', 'message' => $e->getMessage()], 500);
         }
     }
 
