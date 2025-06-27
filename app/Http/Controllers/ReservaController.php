@@ -67,8 +67,18 @@ public function actualizar(Request $request, $id){
 public function eliminar($id){
     try{
         $reserva = Reserva::find($id);
-        $reserva->delete();
-        return response()->json(['message'=>'Reserva Eliminada', 'code'=>'200'], 200);
+        if (!$reserva) {
+                return response()->json(['mensaje' => 'reserva no encontrada'], 404);
+        }
+        if ($reserva->estado === 'Cancelada') {
+            return response()->json(['mensaje' => 'La reserva ya está cancelada'], 400);
+        }
+        $reserva->update(['estado' => 'Cancelada']);
+        return response()->json([
+            'mensaje' => 'reserva cancelada correctamente',
+            'reserva' => $reserva,'code'=>'200'], 200
+            );
+        
     }catch(\Exception $ex){
         return response()->json(['error' => $ex->getMessage()], 500);
     }

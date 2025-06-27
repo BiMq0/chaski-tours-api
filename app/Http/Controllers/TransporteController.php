@@ -59,8 +59,18 @@ class TransporteController extends Controller
     public function eliminar($id){
         try{
             $transporte = Transporte::find($id);
-            $transporte->delete();
-            return response()->json(['message'=>'Transporte Eliminado', 'code'=>'200'], 200);
+
+            if (!$transporte) {
+                return response()->json(['mensaje' => 'reserva no encontrada'], 404);
+            }
+            if ($transporte->estado === false) {
+                return response()->json(['mensaje' => 'La reserva ya está cancelada'], 400);
+            }
+            $transporte->update(['Activo' => false]);
+            return response()->json([
+                'mensaje' => 'transporte cancelado correctamente',
+                'transporte' => $transporte, 'code'=>'200'], 200
+            );
         }catch(\Exception $ex){
             return response()->json(['error' => $ex->getMessage()], 500);
         }
