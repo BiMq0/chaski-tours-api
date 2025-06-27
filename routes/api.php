@@ -38,6 +38,7 @@ Route::get('/visitantes/turistas/{mail}', [TuristaController::class,'selectMail'
 Route::get('/visitantes/turistas/cod/{cod_visitante}', [TuristaController::class,'selectCodigo']);
 Route::post('/visitantes/turistas/crear', [TuristaController::class,'registrar']);
 Route::put('/visitantes/turistas/{cod}', [TuristaController::class,'actualizar']);
+
 Route::delete('/visitantes/turistas/{cod}', [TuristaController::class,'borrar']);
 
 // INSTITUCIONES
