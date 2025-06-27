@@ -9,6 +9,7 @@ class Institucion extends Model
     protected $keyType = 'string';    
     public $timestamps = true;
     protected $fillable = [ 
+        'cod_visitante',
         'nombre', 
         'correo_electronico', 
         'contrasenia', 

@@ -22,7 +22,7 @@ class InstitucionController extends Controller
     public function selectId($cod_visitante)
     {
         try {
-            $institucion = Institucion::where("cod_visitante", $cod_visitante)->first();
+            $institucion = Institucion::find($cod_visitante);
             if (!$institucion) {
                 return response()->json(['error' => 'Institución no encontrada'], 404);
             }
