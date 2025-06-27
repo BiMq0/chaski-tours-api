@@ -22,7 +22,7 @@ class InstitucionController extends Controller
     public function selectId($cod_visitante)
     {
         try {
-            $institucion = Institucion::find($cod_visitante);
+            $institucion = Institucion::where("cod_visitante", $cod_visitante)->first();
             if (!$institucion) {
                 return response()->json(['error' => 'Institución no encontrada'], 404);
             }
@@ -31,7 +31,17 @@ class InstitucionController extends Controller
             return response()->json(['error' => 'Error interno del servidor'], 500);
         }
     }
+    public function selectMail($mail){
+        try {
+            $institucion = Institucion::where('correo_electronico', $mail)
+                ->orWhere('cod_visitante', $mail)
+                ->get();
 
+            return response()->json($institucion);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al buscar la institución: ' . $e->getMessage()], 500);
+        }
+    }
     public function crear(Request $request)
     {
         $validacion = Validator::make($request->all(), [

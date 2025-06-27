@@ -44,7 +44,8 @@ Route::delete('/visitantes/turistas/{cod}', [TuristaController::class,'borrar'])
 // INSTITUCIONES
 
 Route::get('/visitantes/instituciones', [InstitucionController::class, 'selectAll']); 
-Route::get('/visitantes/instituciones/{cod_visitante}', [InstitucionController::class, 'selectId']); 
+Route::get('/visitantes/instituciones/{mail}', [InstitucionController::class,'selectMail']);
+Route::get('/visitantes/instituciones/cod/{cod_visitante}', [InstitucionController::class, 'selectId']); 
 Route::post('/visitantes/instituciones', [InstitucionController::class, 'crear']); 
 Route::put('/visitantes/instituciones/{cod_visitante}', [InstitucionController::class, 'actualizar']); 
 Route::delete('/visitantes/instituciones/{cod_visitante}', [InstitucionController::class, 'eliminar']); 
@@ -126,6 +127,9 @@ Route::delete('/ubicaciones/{id_ubicacion}', [UbicacionController::class,'elimin
 
 Route::get('/reservas', [ReservaController::class,'selectAll']);
 Route::get('/reservas/{id}', [ReservaController::class,'selectId']);
+Route::get('/reservas/cod/{cod_visitante}', [ReservaController::class, 'selectCOD']);
+
+
 Route::post('/reservas/crear', [ReservaController::class,'crear']);
 Route::put('/reservas/{id}', [ReservaController::class,'actualizar']);
 Route::delete('/reservas/{id}', [ReservaController::class,'eliminar']);
@@ -138,10 +142,10 @@ Route::get('/nacionalidades', [NacionalidadController::class,'selectAll']);
 //TOUR
 
 Route::get('/tour', [TourController::class,'selectAll']);
-Route::get('/tour/{id}', [TourController::class,'selectId']);
+Route::get('/tour/{id_tour}', [TourController::class,'selectId']);
 Route::post('/tour/crear', [TourController::class,'crear']);
-Route::put('/tour/{id}', [TourController::class,'actualizar']);
-Route::delete('/tour/{id}', [TourController::class,'eliminar']);
+Route::put('/tour/{id_tour}', [TourController::class,'actualizar']);
+Route::delete('/tour/{id_tour}', [TourController::class,'eliminar']);
 
 //RUTA
 

@@ -97,15 +97,10 @@ class AlojamientoController extends Controller
             if (!$alojamiento) {
                 return response()->json(['mensaje' => 'Alojamiento no encontrado'], 404);
             }
-
-            // Verificar si ya está inactivo
             if ($alojamiento->Activo === false) {
                 return response()->json(['mensaje' => 'El alojamiento ya está inactivo'], 400);
             }
-
-            // Actualizar el estado a inactivo
             $alojamiento->update(['Activo' => false]);
-
             return response()->json([
                 'mensaje' => 'Alojamiento desactivado correctamente',
                 'alojamiento' => $alojamiento

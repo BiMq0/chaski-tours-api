@@ -6,6 +6,7 @@ use App\Models\Habitacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Alojamiento;
+use Laravel\Prompts\Concerns\Fallback;
 
 class HabitacionController extends Controller
 {
@@ -142,13 +143,8 @@ class HabitacionController extends Controller
     {
         try {
             $habitacion = Habitacion::find($id);
-
-            if (!$habitacion) {
-                return response()->json(['mensaje' => 'Habitación no encontrada'], 404);
-            }
-
-            $habitacion->delete();
-
+            $habitacion->disponible = false;
+            $habitacion->save();
             return response()->json(['mensaje' => 'Habitación eliminada correctamente']);
         } catch (\Throwable $e) {
             return response()->json(['error' => 'Error del servidor'], 500);

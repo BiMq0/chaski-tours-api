@@ -62,7 +62,7 @@ class SitioController extends Controller
     public function eliminar($id){
         try{
             $sitio = Sitio::find($id);
-            $sitio->Activo = false;
+            $sitio->Activo=false;
             $sitio->save();
             return response()->json(['message'=>'Sitio Eliminado', 'code'=>'200'], 200);
         }catch(\Exception $ex){

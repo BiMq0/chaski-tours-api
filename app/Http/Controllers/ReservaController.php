@@ -11,7 +11,20 @@ class ReservaController extends Controller
     $reservas = Reserva::all();
     return response()->json($reservas);
 }
+public function selectCOD($cod_visitante)
+{
+    try {
+        $reservas = Reserva::where('cod_visitante', $cod_visitante)->get();
 
+        if ($reservas->isEmpty()) {
+            return response()->json(['message' => 'No hay reservas para este visitante'], 200);
+        }
+
+        return response()->json($reservas);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Error al obtener las reservas: ' . $e->getMessage()], 500);
+    }
+}
 public function selectId($id){
     try{
         $reserva = Reserva::find($id);
@@ -54,8 +67,18 @@ public function actualizar(Request $request, $id){
 public function eliminar($id){
     try{
         $reserva = Reserva::find($id);
-        $reserva->delete();
-        return response()->json(['message'=>'Reserva Eliminada', 'code'=>'200'], 200);
+        if (!$reserva) {
+                return response()->json(['mensaje' => 'reserva no encontrada'], 404);
+        }
+        if ($reserva->estado === 'Cancelada') {
+            return response()->json(['mensaje' => 'La reserva ya está cancelada'], 400);
+        }
+        $reserva->update(['estado' => 'Cancelada']);
+        return response()->json([
+            'mensaje' => 'reserva cancelada correctamente',
+            'reserva' => $reserva,'code'=>'200'], 200
+            );
+        
     }catch(\Exception $ex){
         return response()->json(['error' => $ex->getMessage()], 500);
     }
